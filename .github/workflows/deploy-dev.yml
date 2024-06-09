@@ -7,7 +7,7 @@ env:
   DEV_AWS_S3_BUCKET_NAME: ${{ secrets.DEV_AWS_S3_BUCKET_NAME }}
   DEV_ENV: ${{ secrets.DEV_ENV }}
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
