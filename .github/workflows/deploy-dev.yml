@@ -1,0 +1,55 @@
+name: deploy about dev profile
+on:
+  workflow_dispatch:
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  DEV_AWS_S3_BUCKET_NAME: ${{ secrets.DEV_AWS_S3_BUCKET_NAME }}
+  DEV_ENV: ${{ secrets.DEV_ENV }}
+  DEV_AWS_CLOUDFRONT_DISTRIBUTION: ${{ secrets.DEV_AWS_CLOUDFRONT_DISTRIBUTION }}
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # Setting environment file
+      - name: Setting env files
+        run: echo "${{ env.DEV_ENV }}" > .env
+        shell: bash
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Npm Install
+        run: npm install
+      - name: Npm Build
+        run: npm run build
+      - name: Remove from S3
+        uses: vitorsgomes/s3-rm-action@master
+        with:
+          args: --recursive
+        env:
+          AWS_S3_BUCKET: ${{ env.DEV_AWS_S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-2
+          PATH_TO_DELETE: /
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ env.DEV_AWS_S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-northeast-2
+          SOURCE_DIR: "build"
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ env.DEV_AWS_CLOUDFRONT_DISTRIBUTION }}
+          PATHS: "/index.html"
+          AWS_REGION: "ap-northeast-2"
+          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
