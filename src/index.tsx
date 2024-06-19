@@ -8,6 +8,7 @@ import { RecoilRoot } from "recoil";
 // import { ConfigProvider } from "antd";
 
 import router from "./routes";
+import { ConfigProvider } from "antd";
 
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(
@@ -15,11 +16,14 @@ const root = ReactDOM.createRoot(
 )
 
 root.render(
-  <RecoilRoot>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} fallbackElement={''} />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
-  </RecoilRoot>
+  <ConfigProvider theme={{ token: { colorPrimary: '#333333' } }}>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} fallbackElement={''} />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
+    </RecoilRoot>
+  </ConfigProvider>
+
 );
 
