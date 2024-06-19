@@ -3,6 +3,15 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      keyframes: {
+        slider: {
+           from: { transform: 'translateX(0)' },
+           to: { transform: 'translateX(-100%)' },
+         },
+       },
+      animation: {
+        slider: 'slider 5s linear infinite'
+      },
       colors: {
         white: "#FFFFFF",
         gray1: "#EEEEEE",

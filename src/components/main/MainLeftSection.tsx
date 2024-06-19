@@ -1,6 +1,6 @@
-import { Button, ConfigProvider } from 'antd'
-import Logo from '../../../assets/images/Logo.svg'
-import AutoTyping from '../../../assets/images/AutoTyping.gif'
+import { Button } from 'antd'
+import Logo from '../../assets/images/main/Logo.svg'
+import AutoTyping from '../../assets/images//main/AutoTyping.gif'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 

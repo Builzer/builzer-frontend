@@ -5,10 +5,9 @@ import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
-// import { ConfigProvider } from "antd";
+import { ConfigProvider } from "antd";
 
 import router from "./routes";
-import { ConfigProvider } from "antd";
 
 const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(
