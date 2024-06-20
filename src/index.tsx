@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { RecoilRoot } from "recoil";
-// import { ConfigProvider } from "antd";
+import { ConfigProvider } from "antd";
 
 import router from "./routes";
 
@@ -15,11 +15,14 @@ const root = ReactDOM.createRoot(
 )
 
 root.render(
-  <RecoilRoot>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} fallbackElement={''} />
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
-  </RecoilRoot>
+  <ConfigProvider theme={{ token: { colorPrimary: '#333333' } }}>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} fallbackElement={''} />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
+    </RecoilRoot>
+  </ConfigProvider>
+
 );
 
