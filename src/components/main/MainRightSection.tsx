@@ -49,7 +49,7 @@ export default function MainRightSection() {
                     <div className="w-1/2 text-gray8 mt-5">
                         <p>신규가입 시 <br /> Builzer를 체험해볼 수 있는</p>
                         <p className="font-bold text-black my-3 text-xl">무료 크레딧이 제공됩니다.</p>
-                        <Button type='primary' className='w-full h-12 font-bold text-xl bg-black mt-5'>깃허브로 시작하기</Button>
+                        <Button type='primary' className='w-full h-12 font-bold text-xl bg-black mt-5' href="/login">깃허브로 시작하기</Button>
                     </div>
                 </div>
             </div>

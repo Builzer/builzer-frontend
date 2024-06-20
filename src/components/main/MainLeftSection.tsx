@@ -25,7 +25,7 @@ export default function MainLeftSection() {
                 <div className="border-t-[0.5px] border-b-[0.5px] border-gray1 h-1/2">
                     <p className="font-extrabold text-3xl p-5 text-right">Ready to Start?</p>
                     <div className='w-60 m-auto'>
-                        <Button type='primary' className='w-full h-12 font-bold text-xl bg-black'>시작하기</Button>
+                        <Button type='primary' className='w-full h-12 font-bold text-xl bg-black' href='/login'>시작하기</Button>
                     </div>
                 </div>
             </div>
@@ -53,10 +53,10 @@ export default function MainLeftSection() {
                 </div>
             </div>
             <div className="w-1/3 p-2 hover:text-[#FFE068] cursor-pointer">
-                <p className='font-extrabold text-2xl'>
+                <a href="/login" className='font-extrabold text-2xl'>
                     Login with Github
                     <GitHubIcon className='ml-1 mt-[-5px]' />
-                </p>
+                </a>
                 <p className='my-4'>and</p>
                 <p className='font-extrabold text-2xl'>
                     Try For Free
