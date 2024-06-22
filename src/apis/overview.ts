@@ -1,15 +1,15 @@
-// import { authInstance } from "./utils";
+// import { authInstance } from './utils'
 
-import projectList from "../json/getProjectList.json";
+import projectList from '../json/getProjectList.json'
 
 /**
  * 본인이 속한 프로잭트 정보
  */
 export const getProjectList = async() => {
     // const { data } = await authInstance.get(
-    //     "/project"
-    // );
+    //     '/project'
+    // )
 
-    const data = projectList;
-    return data;
+    const data = projectList
+    return data
 }

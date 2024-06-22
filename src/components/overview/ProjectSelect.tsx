@@ -1,41 +1,41 @@
-import {useEffect, useState} from "react";
-import {Input, Select} from "antd";
-import { useQuery } from "react-query";
-import { getProjectList } from "../../apis/overview";
-import { projectList } from "../../types/project";
-import ProjectPlanButton from "../base/common/ProjectPlanButton";
-import ProjectAuthorityButton from "../base/common/ProjectAuthorityButton";
+import {useEffect, useState} from 'react'
+import {Input, Select} from 'antd'
+import { useQuery } from 'react-query'
+import { getProjectList } from '../../apis/overview'
+import { projectList } from '../../types/project'
+import ProjectPlanButton from '../base/common/ProjectPlanButton'
+import ProjectAuthorityButton from '../base/common/ProjectAuthorityButton'
 
 export default function ProjectSelect() {
-    const [plan, setPlan] = useState<string>("")
-    const [authority, setAuthority] = useState<string>("")
+    const [plan, setPlan] = useState<string>('')
+    const [authority, setAuthority] = useState<string>('')
     const [projectList, setProjectList] = useState<Array<projectList>>([])
-    const [searchInput, setSearchInput] = useState<string>("")
+    const [searchInput, setSearchInput] = useState<string>('')
 
     const { data, isLoading } = useQuery({
-        queryKey: ["getProjectList"],
+        queryKey: ['getProjectList'],
         queryFn: () => getProjectList()
-    });
+    })
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchInput(e.target.value)
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = e.target.value.toLocaleLowerCase().replaceAll(" ", "")
+            const searchText = e.target.value.toLocaleLowerCase().replaceAll(' ', '')
 
             //플랜 필터 선택 시
-            if (plan !== "") {
+            if (plan !== '') {
                 tmpProjectList = tmpProjectList.filter((item) => item.projectPlan === plan)
             }
 
             // 권한 필터 선택 시
-            if (authority !== "") {
+            if (authority !== '') {
                 tmpProjectList = tmpProjectList.filter((item) => item.authority === authority)
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(" ", "").includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -48,21 +48,21 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = searchInput.toLocaleLowerCase().replaceAll(" ", "")
+            const searchText = searchInput.toLocaleLowerCase().replaceAll(' ', '')
 
             //플랜 필터 선택 시
-            if (value !== "") {
+            if (value !== '') {
                 tmpProjectList = tmpProjectList.filter((item) => item.projectPlan === value)
                 console.log(tmpProjectList)
             }
 
             // 권한 필터 선택 시
-            if (authority !== "") {
+            if (authority !== '') {
                 tmpProjectList = tmpProjectList.filter((item) => item.authority === authority)
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(" ", "").includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -76,20 +76,20 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = searchInput.toLocaleLowerCase().replaceAll(" ", "")
+            const searchText = searchInput.toLocaleLowerCase().replaceAll(' ', '')
 
             //플랜 필터 선택 시
-            if (plan !== "") {
+            if (plan !== '') {
                 tmpProjectList = tmpProjectList.filter((item) => item.projectPlan === plan)
             }
 
             // 권한 필터 선택 시
-            if (value !== "") {
+            if (value !== '') {
                 tmpProjectList = tmpProjectList.filter((item) => item.authority === value)
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(" ", "").includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -102,14 +102,14 @@ export default function ProjectSelect() {
             setProjectList(data.projects)
         }
     }, [data])
-    if (!data || isLoading) return <></>;
+    if (!data || isLoading) return <></>
 
-    return <div className="w-full h-full p-2">
-        <div className="mt-12">
-            <div className="flex flex-row gap-1">
-                <Input placeholder="프로젝트명으로 검색" allowClear onChange={handleSearch} />
+    return <div className='w-full h-full p-2'>
+        <div className='mt-12'>
+            <div className='flex flex-row gap-1'>
+                <Input placeholder='프로젝트명으로 검색' allowClear onChange={handleSearch} />
                 <Select
-                    defaultValue=""
+                    defaultValue=''
                     options={[
                         { value: '', label: '플랜' },
                         { value: 'lite', label:'LITE' },
@@ -119,7 +119,7 @@ export default function ProjectSelect() {
                     onChange={handlePlanFilter}
                 />
                 <Select
-                    defaultValue=""
+                    defaultValue=''
                     options={[
                         { value: '', label: '권한' },
                         { value: 'owner', label:'OWNER' },
@@ -129,15 +129,15 @@ export default function ProjectSelect() {
                     onChange={handleAuthorityFilter}
                 />
             </div>
-            <div className=" h-[500px] bg-white mt-2 rounded-md overflow-y-auto p-2">
+            <div className=' h-[500px] bg-white mt-2 rounded-md overflow-y-auto p-2'>
                 {projectList.map((project, index) => (
-                    <div key={index} className="cursor-pointer px-1 py-2 flex flex-row justify-between hover:bg-gray1">
-                        <div className="flex flex-row gap-3">
+                    <div key={index} className='cursor-pointer px-1 py-2 flex flex-row justify-between hover:bg-gray1'>
+                        <div className='flex flex-row gap-3'>
                             <p>{project.projectName}</p>
                             <ProjectPlanButton plan={project.projectPlan} />
                             <ProjectAuthorityButton authority={project.authority} />
                         </div>
-                        <div className="font-light text-sm">{project.createdAt}</div>
+                        <div className='font-light text-sm'>{project.createdAt}</div>
                     </div>
                 ))}
             </div>

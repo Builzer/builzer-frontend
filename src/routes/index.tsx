@@ -1,14 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainLayoutUnsigned from "../layouts/MainLayoutUnsigned";
-import NotFoundPage from "../components/common/NotFoundPage";
-import MainPage from "../pages/MainPage";
-import LoginPage from "../pages/LoginPage";
-import OverviewPage from "../pages/OverviewPage";
-import MainLayoutSigned from "../layouts/MainLayoutSigned";
+import { createBrowserRouter } from 'react-router-dom'
+import MainLayoutUnsigned from '../layouts/MainLayoutUnsigned'
+import NotFoundPage from '../components/common/NotFoundPage'
+import MainPage from '../pages/MainPage'
+import LoginPage from '../pages/LoginPage'
+import OverviewPage from '../pages/OverviewPage'
+import MainLayoutSigned from '../layouts/MainLayoutSigned'
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: '/',
         element: <MainLayoutUnsigned />,
         errorElement: <NotFoundPage />,
         children: [
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/login",
+        path: '/login',
         element: <MainLayoutUnsigned />,
         errorElement: <NotFoundPage />,
         children: [
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/",
+        path: '/',
         element: <MainLayoutSigned />,
         errorElement: <NotFoundPage />,
         children: [
@@ -33,4 +33,4 @@ const router = createBrowserRouter([
     }
 ])
 
-export default router;
+export default router
