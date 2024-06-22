@@ -1,5 +1,6 @@
-import {BrowserView} from 'react-device-detect'
-import ProjectSelect from '../components/overview/ProjectSelect'
+import React from "react"
+import {BrowserView} from "react-device-detect"
+import ProjectSelect from "../components/overview/ProjectSelect"
 
 export default function OverviewPage() {
     return <div>

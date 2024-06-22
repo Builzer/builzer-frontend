@@ -1,3 +1,4 @@
+import React from 'react'
 import Login01 from '../assets/images/login/Login01.svg'
 import CreditImg from '../assets/images/Credit.svg'
 import { Button } from 'antd'

@@ -1,13 +1,14 @@
-import SendIcon from '@mui/icons-material/Send'
-import { Input } from 'antd'
-import { useQuery } from 'react-query'
-import { getProjectList } from '../../apis/overview'
-import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import ControlPointIcon from '@mui/icons-material/ControlPoint'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import { projectList } from '../../types/project'
-import ProjectMenuList from '../base/common/ProjectMenuList'
+import React from "react"
+import SendIcon from "@mui/icons-material/Send"
+import { Input } from "antd"
+import { useQuery } from "react-query"
+import { getProjectList } from "../../apis/overview"
+import { useEffect, useState } from "react"
+import { NavLink } from "react-router-dom"
+import ControlPointIcon from "@mui/icons-material/ControlPoint"
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
+import { projectList } from "../../types/project"
+import ProjectMenuList from "../base/common/ProjectMenuList"
 
 export default function ProjectSelectMenu() {
     const [isMenuShow, setIsMenuShow] = useState<boolean>(false);
@@ -19,12 +20,12 @@ export default function ProjectSelectMenu() {
     })
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const searchText = e.target.value.toLocaleLowerCase().replaceAll(' ', '')
+        const searchText = e.target.value.toLocaleLowerCase().split(' ').join('')
         const tmpProjectList: Array<projectList> = []
 
         if (data) {
             data.projects.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     tmpProjectList.push(project)
                 }
             })

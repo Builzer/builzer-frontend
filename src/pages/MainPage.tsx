@@ -1,6 +1,7 @@
-import { BrowserView, MobileView } from 'react-device-detect'
-import MainLeftSection from '../components/main/MainLeftSection'
-import MainRightSection from '../components/main/MainRightSection'
+import React from "react"
+import { BrowserView, MobileView } from "react-device-detect"
+import MainLeftSection from "../components/main/MainLeftSection"
+import MainRightSection from "../components/main/MainRightSection"
 
 export default function MainPage() {
     return <div>

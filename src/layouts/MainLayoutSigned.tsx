@@ -1,3 +1,4 @@
+import React from 'react'
 import { Outlet } from 'react-router-dom'
 import SignedHeader from '../components/common/SignedHeader'
 import Footer from '../components/common/Footer'

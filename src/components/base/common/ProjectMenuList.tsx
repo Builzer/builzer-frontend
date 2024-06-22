@@ -1,4 +1,5 @@
-import { projectList } from '../../../types/project'
+import React from "react"
+import { projectList } from "../../../types/project"
 
 export default function ProjectMenuList({...props}) {
     const {projects} = props

@@ -1,8 +1,9 @@
-import { Button } from 'antd'
-import Logo from '../../assets/images/main/Logo.svg'
-import AutoTyping from '../../assets/images//main/AutoTyping.gif'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
+import React from "react"
+import { Button } from "antd"
+import Logo from "../../assets/images/main/Logo.svg"
+import AutoTyping from "../../assets/images//main/AutoTyping.gif"
+import GitHubIcon from "@mui/icons-material/GitHub"
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward"
 
 export default function MainLeftSection() {
     return <div className='w-full h-full relative'>

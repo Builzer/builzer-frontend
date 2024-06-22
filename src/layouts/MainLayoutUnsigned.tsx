@@ -1,5 +1,6 @@
+import React from 'react'
 import {NavLink, Outlet} from 'react-router-dom'
-import Footer from '../components/common/Footer'
+import Footer from "../components/common/Footer"
 export default function MainLayoutSigned() {
     return (
         <div className='max-w-[1920px] min-w-[1400px] h-full font-regular'>

@@ -5,6 +5,7 @@ import { getProjectList } from '../../apis/overview'
 import { projectList } from '../../types/project'
 import ProjectPlanButton from '../base/common/ProjectPlanButton'
 import ProjectAuthorityButton from '../base/common/ProjectAuthorityButton'
+import React from 'react'
 
 export default function ProjectSelect() {
     const [plan, setPlan] = useState<string>('')
@@ -22,7 +23,7 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = e.target.value.toLocaleLowerCase().replaceAll(' ', '')
+            const searchText = e.target.value.toLocaleLowerCase().split(' ').join('')
 
             //플랜 필터 선택 시
             if (plan !== '') {
@@ -35,7 +36,7 @@ export default function ProjectSelect() {
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -48,7 +49,7 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = searchInput.toLocaleLowerCase().replaceAll(' ', '')
+            const searchText = searchInput.toLocaleLowerCase().split(' ').join('')
 
             //플랜 필터 선택 시
             if (value !== '') {
@@ -62,7 +63,7 @@ export default function ProjectSelect() {
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -76,7 +77,7 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = searchInput.toLocaleLowerCase().replaceAll(' ', '')
+            const searchText = searchInput.toLocaleLowerCase().split(' ').join('')
 
             //플랜 필터 선택 시
             if (plan !== '') {
@@ -89,7 +90,7 @@ export default function ProjectSelect() {
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     result.push(project)
                 }
             })
