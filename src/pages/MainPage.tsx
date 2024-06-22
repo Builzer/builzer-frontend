@@ -4,7 +4,7 @@ import MainRightSection from "../components/main/MainRightSection";
 
 export default function MainPage() {
     return <div>
-        <BrowserView className="flex flex-row">
+        <BrowserView className="flex flex-row h-[620px]">
             <div className="w-1/2 h-full border-r-[0.5px] border-gray1">
                 <MainLeftSection />
             </div>
