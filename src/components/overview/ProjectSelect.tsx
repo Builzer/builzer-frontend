@@ -1,159 +1,146 @@
-import {useRef, useState} from "react";
-import {Table, Typography, Input, Button, Space, InputRef, Pagination} from "antd";
-import { ColumnsType, ColumnType } from "antd/es/table";
-import { CloseCircleOutlined, SearchOutlined } from "@ant-design/icons";
-import { FilterConfirmProps } from "antd/es/table/interface";
-import Highlighter from "react-highlight-words";
+import {useEffect, useState} from "react";
+import {Input, Select} from "antd";
+import { useQuery } from "react-query";
+import { getProjectList } from "../../apis/overview";
+import { projectList } from "../../types/project";
+import ProjectPlanButton from "../base/common/ProjectPlanButton";
+import ProjectAuthorityButton from "../base/common/ProjectAuthorityButton";
 
-type DataIndex = keyof any;
 export default function ProjectSelect() {
-    const searchInput = useRef<InputRef>(null);
-    const [searchText, setSearchText] = useState<string>("");
-    const [searchedColumn, setSearchedColumn] = useState<DataIndex>();
+    const [plan, setPlan] = useState<string>("")
+    const [authority, setAuthority] = useState<string>("")
+    const [projectList, setProjectList] = useState<Array<projectList>>([])
+    const [searchInput, setSearchInput] = useState<string>("")
 
-    const handleSearch = (
-        selectedKeys: string[],
-        confirm: (param?: FilterConfirmProps) => void,
-        dataIndex: DataIndex
-    ) => {
-        confirm();
-        setSearchText(selectedKeys[0]);
-        setSearchedColumn(dataIndex);
-    };
+    const { data, isLoading } = useQuery({
+        queryKey: ["getProjectList"],
+        queryFn: () => getProjectList()
+    });
 
-    const handleReset = (clearFilters: () => void) => {
-        clearFilters();
-        setSearchText("");
-    };
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setSearchInput(e.target.value)
+        if (data) {
+            let tmpProjectList = data.projects
+            const result: Array<projectList> = []
+            const searchText = e.target.value.toLocaleLowerCase().replaceAll(" ", "")
 
-    const getColumnSearchProps = (
-        dataIndex: DataIndex
-    ): ColumnType<any> => ({
-        filterDropdown: ({
-                             setSelectedKeys,
-                             selectedKeys,
-                             confirm,
-                             clearFilters,
-                             close,
-                         }) => (
-            <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
-                <Input
-                    ref={searchInput}
-                    placeholder={'프로젝트명으로 검색'}
-                    value={selectedKeys[0]}
-                    onChange={(e) =>
-                        setSelectedKeys(e.target.value ? [e.target.value] : [])
-                    }
-                    onPressEnter={() =>
-                        handleSearch(selectedKeys as string[], confirm, dataIndex)
-                    }
-                    style={{ marginBottom: 8, display: "block" }}
-                />
-                <Space>
-                    <Button
-                        type="primary"
-                        onClick={() =>
-                            handleSearch(selectedKeys as string[], confirm, dataIndex)
-                        }
-                        icon={<SearchOutlined />}
-                        size="small"
-                        style={{ width: 90 }}
-                    >
-                        검색
-                    </Button>
-                    <Button
-                        onClick={() => clearFilters && handleReset(clearFilters)}
-                        size="small"
-                        style={{ width: 90 }}
-                    >
-                        초기화
-                    </Button>
-                    <Button
-                        type="link"
-                        size="small"
-                        style={{ color: "#000" }}
-                        onClick={() => {
-                            close();
-                        }}
-                    >
-                        닫기
-                    </Button>
-                </Space>
-            </div>
-        ),
-        filterIcon: (filtered: boolean) => (
-            <SearchOutlined style={{ color: filtered ? "#A843D6" : undefined }} />
-        ),
-        onFilter: (value, record) =>
-            record[dataIndex]
-                .toString()
-                .toLowerCase()
-                .includes((value as string).toLowerCase()),
-        onFilterDropdownOpenChange: (visible) => {
-            if (visible) {
-                setTimeout(() => searchInput.current?.select(), 100);
+            //플랜 필터 선택 시
+            if (plan !== "") {
+                tmpProjectList = tmpProjectList.filter((item) => item.projectPlan === plan)
             }
-        },
-        render: (text) =>
-        searchedColumn === dataIndex ? (
-            <Highlighter
-                highlightStyle={{ backgroundColor: "#FFE06877", padding: 0 }}
-                searchWords={[searchText]}
-                autoEscape
-                textToHighlight={text ? text.toString() : ""}
-            />
-        ) : (
-            text
-        ),
-    })
-    const columns: ColumnsType<any> = [
-        {
-            title: <Typography.Text>프로젝트명</Typography.Text>,
-            key: "projectNm",
-            dataIndex: "projectNm",
-            width: 300,
-            ...getColumnSearchProps("projectNm")
-        },
-        {
-            title: <Typography.Text>생성일</Typography.Text>,
-            key: "createdDate",
-            dataIndex: "createdDate",
-            width: 10,
-            sorter: {
-                compare: (a, b) => a.createdDate - b.createdDate
+
+            // 권한 필터 선택 시
+            if (authority !== "") {
+                tmpProjectList = tmpProjectList.filter((item) => item.authority === authority)
             }
-        },
 
-    ]
-
-    const dataSource = [
-        {
-            key: '1',
-            projectNm: 'project01',
-            createdDate: '2024-01-01'
-        },
-        {
-            key: '2',
-            projectNm: 'project02',
-            createdDate: '2024-01-02'
+            tmpProjectList.forEach((project) => {
+                if (project.projectName.toLocaleLowerCase().replaceAll(" ", "").includes(searchText)) {
+                    result.push(project)
+                }
+            })
+            setProjectList(result)
         }
-    ]
+    }
 
-    return <div className="w-full h-full p-2 text-center">
-        <div className="bg-white pb-5 rounded-md">
-            <div className="mt-12 h-[500px]">
-                <Table
-                    columns={columns}
-                    dataSource={dataSource}
-                    pagination={false}
+    const handlePlanFilter = (value: string) => {
+        setPlan(value)
+        if (data) {
+            let tmpProjectList = data.projects
+            const result: Array<projectList> = []
+            const searchText = searchInput.toLocaleLowerCase().replaceAll(" ", "")
+
+            //플랜 필터 선택 시
+            if (value !== "") {
+                tmpProjectList = tmpProjectList.filter((item) => item.projectPlan === value)
+                console.log(tmpProjectList)
+            }
+
+            // 권한 필터 선택 시
+            if (authority !== "") {
+                tmpProjectList = tmpProjectList.filter((item) => item.authority === authority)
+            }
+
+            tmpProjectList.forEach((project) => {
+                if (project.projectName.toLocaleLowerCase().replaceAll(" ", "").includes(searchText)) {
+                    result.push(project)
+                }
+            })
+
+            setProjectList(result)
+        }
+    }
+
+    const handleAuthorityFilter = (value: string) => {
+        setAuthority(value)
+        if (data) {
+            let tmpProjectList = data.projects
+            const result: Array<projectList> = []
+            const searchText = searchInput.toLocaleLowerCase().replaceAll(" ", "")
+
+            //플랜 필터 선택 시
+            if (plan !== "") {
+                tmpProjectList = tmpProjectList.filter((item) => item.projectPlan === plan)
+            }
+
+            // 권한 필터 선택 시
+            if (value !== "") {
+                tmpProjectList = tmpProjectList.filter((item) => item.authority === value)
+            }
+
+            tmpProjectList.forEach((project) => {
+                if (project.projectName.toLocaleLowerCase().replaceAll(" ", "").includes(searchText)) {
+                    result.push(project)
+                }
+            })
+            setProjectList(result)
+        }
+    }
+
+    useEffect(() => {
+        if (data) {
+            setProjectList(data.projects)
+        }
+    }, [data])
+    if (!data || isLoading) return <></>;
+
+    return <div className="w-full h-full p-2">
+        <div className="mt-12">
+            <div className="flex flex-row gap-1">
+                <Input placeholder="프로젝트명으로 검색" allowClear onChange={handleSearch} />
+                <Select
+                    defaultValue=""
+                    options={[
+                        { value: '', label: '플랜' },
+                        { value: 'lite', label:'LITE' },
+                        { value: 'pro', label:'PRO' },
+                    ]}
+                    style={{ width: 130 }}
+                    onChange={handlePlanFilter}
+                />
+                <Select
+                    defaultValue=""
+                    options={[
+                        { value: '', label: '권한' },
+                        { value: 'owner', label:'OWNER' },
+                        { value: 'developer', label:'DEVELOPER' },
+                    ]}
+                    style={{ width: 180 }}
+                    onChange={handleAuthorityFilter}
                 />
             </div>
-            <Pagination
-                showSizeChanger={false}
-                defaultCurrent={1}
-                total={2}
-                defaultPageSize={8}
-            />
+            <div className=" h-[500px] bg-white mt-2 rounded-md overflow-y-auto p-2">
+                {projectList.map((project, index) => (
+                    <div key={index} className="cursor-pointer px-1 py-2 flex flex-row justify-between hover:bg-gray1">
+                        <div className="flex flex-row gap-3">
+                            <p>{project.projectName}</p>
+                            <ProjectPlanButton plan={project.projectPlan} />
+                            <ProjectAuthorityButton authority={project.authority} />
+                        </div>
+                        <div className="font-light text-sm">{project.createdAt}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     </div>
 }

@@ -1,5 +1,3 @@
-import {useRecoilState} from "recoil";
-import {headerMenuState} from "../../recoil/atoms/common";
 import CreditImg from "../../assets/images/Credit.svg";
 import {Badge} from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
