@@ -1,18 +1,17 @@
-import React from "react"
-import SendIcon from "@mui/icons-material/Send"
-import { Input } from "antd"
-import { useQuery } from "react-query"
-import { getProjectList } from "../../apis/overview"
-import { useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
-import ControlPointIcon from "@mui/icons-material/ControlPoint"
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined"
-import { projectList } from "../../types/project"
-import ProjectMenuList from "../base/common/ProjectMenuList"
+import SendIcon from '@mui/icons-material/Send'
+import { Input } from 'antd'
+import { useQuery } from 'react-query'
+import { getProjectList } from '../../apis/overview'
+import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import ControlPointIcon from '@mui/icons-material/ControlPoint'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
+import ProjectMenuList from '../base/common/ProjectMenuList'
+import { projectList } from '../../types/project'
 
 export default function ProjectSelectMenu() {
-    const [isMenuShow, setIsMenuShow] = useState<boolean>(false);
-    const [projectList, setProjectList] = useState<Array<projectList>>([]);
+    const [isMenuShow, setIsMenuShow] = useState<boolean>(false)
+    const [projectList, setProjectList] = useState<Array<projectList>>([])
 
     const { data, isLoading } = useQuery({
         queryKey: ['getProjectList'],

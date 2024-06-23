@@ -1,8 +1,7 @@
-import React from "react"
-import CreditImg from "../../assets/images/Credit.svg"
-import {Badge} from "@mui/material"
-import NotificationsIcon from "@mui/icons-material/Notifications"
-import {NavLink} from "react-router-dom"
+import CreditImg from '../../assets/images/Credit.svg'
+import {Badge} from '@mui/material'
+import NotificationsIcon from '@mui/icons-material/Notifications'
+import {NavLink} from 'react-router-dom'
 
 export default function SignedHeader() {
     return <div className='w-full flex justify-between'>

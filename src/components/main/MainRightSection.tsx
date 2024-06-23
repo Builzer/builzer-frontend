@@ -1,4 +1,3 @@
-import React from "react"
 import { Button } from "antd"
 import Main01 from "../../assets/images/main/Main01.svg"
 import Main02 from "../../assets/images/main/Main02.svg"

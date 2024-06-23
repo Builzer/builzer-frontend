@@ -4,10 +4,10 @@ import {recoilPersist} from 'recoil-persist'
 const {persistAtom} = recoilPersist()
 
 /**
- * 헤더 메뉴
+ * 선택된 프로젝트
  */
-export const headerMenuState = atom({
-    key: 'headerMenuState',
-    default: 0,
+export const selectedProjectState = atom({
+    key: 'selectedProjectState',
+    default: '',
     effects_UNSTABLE: [persistAtom]
 })

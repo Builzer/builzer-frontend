@@ -3,7 +3,7 @@ import NotFoundPage from "../pages/NotFoundPage"
 import MainLayoutUnsigned from "../layouts/MainLayoutUnsigned"
 import MainPage from "../pages/MainPage"
 import LoginPage from "../pages/LoginPage"
-import MainLayoutSigned from "../layouts/MainLayoutUnsigned"
+import MainLayoutSigned from "../layouts/MainLayoutSigned"
 import OverviewPage from "../pages/OverviewPage"
 
 const router = createBrowserRouter([
