@@ -1,10 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom'
-import MainLayoutUnsigned from '../layouts/MainLayoutUnsigned'
-import NotFoundPage from '../components/common/NotFoundPage'
-import MainPage from '../pages/MainPage'
-import LoginPage from '../pages/LoginPage'
-import OverviewPage from '../pages/OverviewPage'
-import MainLayoutSigned from '../layouts/MainLayoutSigned'
+import { createBrowserRouter } from "react-router-dom"
+import NotFoundPage from "../pages/NotFoundPage"
+import MainLayoutUnsigned from "../layouts/MainLayoutUnsigned"
+import MainPage from "../pages/MainPage"
+import LoginPage from "../pages/LoginPage"
+import MainLayoutSigned from "../layouts/MainLayoutSigned"
+import OverviewPage from "../pages/OverviewPage"
 
 const router = createBrowserRouter([
     {

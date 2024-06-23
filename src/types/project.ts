@@ -5,4 +5,5 @@ export interface projectList {
     projectName: string
     projectPlan: string
     projectStatus: string
+    projectId: string
 }

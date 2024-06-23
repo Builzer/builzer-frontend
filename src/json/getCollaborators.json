@@ -1,0 +1,22 @@
+{
+    "projectMembers" : [
+        {
+            "gitEmail" : "githubtest01@gmail.com",
+            "name" : "username1",
+            "authority" : "developer",
+            "isAccepted" : "accept"
+        },
+        {
+            "gitEmail" : "githubtest02@gmail.com",
+            "name" : "username2",
+            "authority" : "developer",
+            "isAccepted" : "decline"
+        },
+        {
+            "gitEmail" : "githubtest03@gmail.com",
+            "name" : "username3",
+            "authority" : "developer",
+            "isAccepted" : "pending"
+        }
+    ] 
+}

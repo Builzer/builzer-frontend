@@ -2,11 +2,12 @@ import {useEffect, useState} from 'react'
 import {Input, Select} from 'antd'
 import { useQuery } from 'react-query'
 import { getProjectList } from '../../apis/overview'
-import { projectList } from '../../types/project'
 import ProjectPlanButton from '../base/common/ProjectPlanButton'
 import ProjectAuthorityButton from '../base/common/ProjectAuthorityButton'
+import { projectList } from '../../types/project'
 
-export default function ProjectSelect() {
+export default function ProjectSelect({...props}) {
+    const {projectId, setProjectId} = props
     const [plan, setPlan] = useState<string>('')
     const [authority, setAuthority] = useState<string>('')
     const [projectList, setProjectList] = useState<Array<projectList>>([])
@@ -22,7 +23,7 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = e.target.value.toLocaleLowerCase().replaceAll(' ', '')
+            const searchText = e.target.value.toLocaleLowerCase().split(' ').join('')
 
             //플랜 필터 선택 시
             if (plan !== '') {
@@ -35,7 +36,7 @@ export default function ProjectSelect() {
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -48,7 +49,7 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = searchInput.toLocaleLowerCase().replaceAll(' ', '')
+            const searchText = searchInput.toLocaleLowerCase().split(' ').join('')
 
             //플랜 필터 선택 시
             if (value !== '') {
@@ -62,7 +63,7 @@ export default function ProjectSelect() {
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -76,7 +77,7 @@ export default function ProjectSelect() {
         if (data) {
             let tmpProjectList = data.projects
             const result: Array<projectList> = []
-            const searchText = searchInput.toLocaleLowerCase().replaceAll(' ', '')
+            const searchText = searchInput.toLocaleLowerCase().split(' ').join('')
 
             //플랜 필터 선택 시
             if (plan !== '') {
@@ -89,7 +90,7 @@ export default function ProjectSelect() {
             }
 
             tmpProjectList.forEach((project) => {
-                if (project.projectName.toLocaleLowerCase().replaceAll(' ', '').includes(searchText)) {
+                if (project.projectName.toLocaleLowerCase().split(' ').join('').includes(searchText)) {
                     result.push(project)
                 }
             })
@@ -131,13 +132,13 @@ export default function ProjectSelect() {
             </div>
             <div className=' h-[500px] bg-white mt-2 rounded-md overflow-y-auto p-2'>
                 {projectList.map((project, index) => (
-                    <div key={index} className='cursor-pointer px-1 py-2 flex flex-row justify-between hover:bg-gray1'>
+                    <div key={index} className={`cursor-pointer px-2 py-2 flex flex-row justify-between hover:bg-gray1 ${projectId === project.projectId ? 'bg-gray2 hover:bg-gray2' : ''}`} onClick={() => setProjectId(project.projectId)}>
                         <div className='flex flex-row gap-3'>
                             <p>{project.projectName}</p>
                             <ProjectPlanButton plan={project.projectPlan} />
                             <ProjectAuthorityButton authority={project.authority} />
                         </div>
-                        <div className='font-light text-sm'>{project.createdAt}</div>
+                        <div className='font-light text-sm mt-1'>{project.createdAt}</div>
                     </div>
                 ))}
             </div>
