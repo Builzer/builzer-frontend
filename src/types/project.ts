@@ -1,3 +1,7 @@
+export interface projectInfoSimple {
+    projectId: string
+    projectName: string
+}
 export interface projectList {
     authority: string
     createdAt: string
@@ -6,4 +10,11 @@ export interface projectList {
     projectPlan: string
     projectStatus: string
     projectId: string
+}
+
+export interface repositoryList {
+    repoName: string
+    isPrivate: boolean
+    projectType: string
+    updatedAt: string
 }

@@ -5,15 +5,18 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import ProjectDetailSpec from './detail/ProjectDetailSpec'
 import ProjectDetailInfo from './detail/ProjectDetailInfo'
 import ProjectDetailCollaborators from './detail/ProjectDetailCollaborators'
+import { NavLink } from 'react-router-dom'
 
 export default function ProjectInfo({...props}) {
     const {projectId} = props
 
     return <div className='w-full h-full relative mt-14'>
-        <Button type='primary' className='w-[580px] ml-2 font-bold'>
-            <p>신규 프로젝트 생성</p>
-            <ControlPointIcon />
-        </Button>
+        <NavLink to='/overview/select'>
+            <Button type='primary' className='w-[590px] font-bold'>
+                <p>신규 프로젝트 생성</p>
+                <ControlPointIcon />
+            </Button>
+        </NavLink>
         {projectId === '' ?
             <div>
                 <div className='absolute left-[225px] top-[335px]'>

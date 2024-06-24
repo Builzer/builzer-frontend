@@ -1,6 +1,6 @@
 import {BrowserView} from 'react-device-detect'
-import ProjectSelect from '../components/overview/ProjectSelect'
-import ProjectInfo from '../components/overview/ProjectInfo'
+import ProjectSelect from '../../components/overview/ProjectSelect'
+import ProjectInfo from '../../components/overview/ProjectInfo'
 import { useState } from 'react'
 
 export default function OverviewPage() {

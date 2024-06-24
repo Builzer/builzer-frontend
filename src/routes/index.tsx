@@ -4,7 +4,8 @@ import MainLayoutUnsigned from "../layouts/MainLayoutUnsigned"
 import MainPage from "../pages/MainPage"
 import LoginPage from "../pages/LoginPage"
 import MainLayoutSigned from "../layouts/MainLayoutSigned"
-import OverviewPage from "../pages/OverviewPage"
+import OverviewPage from "../pages/overview/OverviewPage"
+import OverviewSelectPage from "../pages/overview/OverviewSelectPage"
 
 const router = createBrowserRouter([
     {
@@ -24,11 +25,12 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: '/',
+        path: '/overview',
         element: <MainLayoutSigned />,
         errorElement: <NotFoundPage />,
         children: [
-            { path: 'overview', element: <OverviewPage /> }
+            { index: true, path: '', element: <OverviewPage /> },
+            { path: 'select', element: <OverviewSelectPage /> }
         ]
     }
 ])

@@ -108,7 +108,7 @@ export default function ProjectSelect({...props}) {
     return <div className='w-full h-full p-2'>
         <div className='mt-12'>
             <div className='flex flex-row gap-1'>
-                <Input placeholder='프로젝트명으로 검색' allowClear onChange={handleSearch} />
+                <Input placeholder='🔎 프로젝트명으로 검색' allowClear onChange={handleSearch} />
                 <Select
                     defaultValue=''
                     options={[
