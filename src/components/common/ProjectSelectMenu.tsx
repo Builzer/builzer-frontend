@@ -62,7 +62,7 @@ export default function ProjectSelectMenu() {
             }
         </div>
         {isMenuShow && <div className='w-[200px] h-[300px] font-light bg-white relative z-20 mt-1 rounded-md p-2 shadow-lg'>
-            <Input placeholder='🔎 프로젝트명으로 검색' allowClear onChange={handleSearch}/>
+            <Input placeholder='🔎 검색' allowClear onChange={handleSearch}/>
             <ProjectMenuList projects={projectList} />
             <div className='flex flex-row justify-between p-1 cursor-pointer mt-2 hover:bg-gray1'>
                 <NavLink to='/overview/select'>프로젝트 생성</NavLink>

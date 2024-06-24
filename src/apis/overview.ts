@@ -5,6 +5,7 @@ import projectInfo from '../json/getProjectDetail.json'
 import collaborators from '../json/getCollaborators.json'
 import organizations from '../json/getGitOrganizations.json'
 import repositoryList from '../json/getGitRepositoryList.json'
+import recentSettingList from '../json/getProjectRecentSettings.json'
 
 /**
  * 본인이 속한 프로잭트 정보
@@ -63,5 +64,17 @@ export const getGitRepositoryList = async(orgName: string, per: number, page: nu
     // )
 
     const data = repositoryList
+    return data
+}
+
+/**
+ * 플랜 정보(서버 스펙 + 최근 세팅)
+ */
+export const getProjectRecentSettings = async() => {
+    // const { data } = await authInstance.get(
+    //     '/projects/settings'
+    // )
+
+    const data = recentSettingList
     return data
 }

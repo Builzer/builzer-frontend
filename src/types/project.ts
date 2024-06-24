@@ -18,3 +18,16 @@ export interface repositoryList {
     projectType: string
     updatedAt: string
 }
+
+export interface planInfo {
+    planName: string
+    planExplain: string
+    planPrice: number
+}
+
+export interface recentSettingInfo {
+    languageSpec: string
+    buildTools: string
+    serverSpec: string
+    dbSpec: string | null
+}
