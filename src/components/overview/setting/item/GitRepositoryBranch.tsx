@@ -5,14 +5,11 @@ import { projectBuildInfo, projectDefaultInfo } from '../../../../types/project'
 import { projectBuildState, projectDefaultInfoState } from '../../../../recoil/atoms/project'
 import { useEffect, useState } from 'react'
 import { Select } from 'antd'
+import { selectItem } from '../../../../types/common'
 
-interface branchList {
-    value: string
-    label: string
-}
 export default function GitRepositoryBranch() {
     const projectDefaultInfo = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
-    const [branchList, setBranchList] = useState<Array<branchList>>([])
+    const [branchList, setBranchList] = useState<Array<selectItem>>([])
     const setProjectBuildInfo = useSetRecoilState<projectBuildInfo>(projectBuildState)
 
     const { data, isLoading } = useQuery({
@@ -32,7 +29,7 @@ export default function GitRepositoryBranch() {
 
     useEffect(() => {
         if (data) {
-            const tmpBranchList: Array<branchList> = []
+            const tmpBranchList: Array<selectItem> = []
 
             data.forEach((item, index) => {
                 if (index === 0) {

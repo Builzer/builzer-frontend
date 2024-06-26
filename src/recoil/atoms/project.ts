@@ -1,6 +1,7 @@
 import {atom} from 'recoil'
 import {recoilPersist} from 'recoil-persist'
 import { projectDefaultInfo } from '../../types/project'
+import { selectItem } from '../../types/common'
 
 const {persistAtom} = recoilPersist()
 
@@ -50,5 +51,14 @@ export const projectBuildState = atom({
             envList: []
         }
     },
+    effects_UNSTABLE: [persistAtom]
+})
+
+/**
+ * 신규 프로젝트 팀원
+ */
+export const projectCollaboratorsState = atom<Array<selectItem>>({
+    key: 'projectCollaboratorsState',
+    default: [],
     effects_UNSTABLE: [persistAtom]
 })

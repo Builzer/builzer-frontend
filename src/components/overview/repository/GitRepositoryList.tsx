@@ -55,7 +55,8 @@ export default function GitRepositoryList({...props}) {
                         }
                         <p className='mt-1 font-light text-gray10'>{item.updatedAt}</p>
                     </div>
-                    <Button 
+                    <Button
+                        className='bg-black'
                         type='primary'
                         onClick={() => handleRepository(item.repoName)}
                         disabled={selectedRepo === item.repoName}

@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 )
 
 root.render(
-  <ConfigProvider theme={{ token: { colorPrimary: '#333333' } }}>
+  <ConfigProvider theme={{ token: { colorPrimary: '#555555' } }}>
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} fallbackElement={''} />

@@ -125,6 +125,6 @@ export default function SelectProjectTemplate() {
                 }
             </div>
         </div>
-        <Button className='w-full mt-2' type='primary' onClick={() => handleGoProjectSetting()}>프로젝트 세팅 설정</Button>
+        <Button className='w-full mt-2 bg-black' type='primary' onClick={() => handleGoProjectSetting()}>프로젝트 세팅 설정</Button>
     </div>
 }

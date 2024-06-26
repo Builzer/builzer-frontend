@@ -5,14 +5,11 @@ import { useEffect, useState } from 'react'
 import GitRepositoryList from './repository/GitRepositoryList'
 import { useRecoilValue } from 'recoil'
 import { userGitNameState } from '../../recoil/atoms/common'
+import { selectItem } from '../../types/common'
 
-interface organizations {
-    value: string
-    label: string
-}
 export default function ProjectGitRepository() {
     const userGitName = useRecoilValue<string>(userGitNameState)
-    const [organizations, setOrganizations] = useState<Array<organizations>>()
+    const [organizations, setOrganizations] = useState<Array<selectItem>>()
     const [selectedOrg, setSelectedOrg] = useState<string>('owner')
     const [searchText, setSearchText] = useState<string>('')
 
@@ -31,7 +28,7 @@ export default function ProjectGitRepository() {
 
     useEffect(() => {
         if (data) {
-            const options: Array<organizations>  = []
+            const options: Array<selectItem>  = []
             options.push({
                 value: 'owner',
                 label: userGitName

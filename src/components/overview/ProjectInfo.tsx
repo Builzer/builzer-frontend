@@ -12,7 +12,7 @@ export default function ProjectInfo({...props}) {
 
     return <div className='w-full h-full relative mt-14'>
         <NavLink to='/overview/select'>
-            <Button type='primary' className='w-[590px] font-bold'>
+            <Button type='primary' className='w-[590px] font-bold bg-black'>
                 <p>신규 프로젝트 생성</p>
                 <ControlPointIcon />
             </Button>
