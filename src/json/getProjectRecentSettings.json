@@ -1,0 +1,49 @@
+[
+    {
+        "plan": {
+            "planName": "Lite",
+            "planExplain": "Not Include DB",
+            "planPrice": 3
+        },
+        "setting": [
+            {
+                "projectSpecId": 1,
+                "languageSpec": "Java / 17.0.8",
+                "buildTools": "Gradle",
+                "serverSpec": "t3.nano",
+                "dbSpec": null
+            },
+            {
+                "projectSpecId": 2,
+                "languageSpec": "Java / 17.0.8",
+                "buildTools": "Gradle",
+                "serverSpec": "t3.small",
+                "dbSpec": null
+            }
+        ]
+        
+    },
+    {
+        "plan": {
+            "planName": "Pro",
+            "planExplain": "Include DB",
+            "planPrice": 5
+        },
+        "setting": [
+            {
+                "projectSpecId": 3,
+                "languageSpec": "Java / 17.0.8",
+                "buildTools": "Gradle",
+                "serverSpec": "t3.micro",
+                "dbSpec": "MySQL / 8.0.1"
+            },
+            {
+                "projectSpecId": 4,
+                "languageSpec": "Java / 17.0.8",
+                "buildTools": "Gradle",
+                "serverSpec": "t3.small",
+                "dbSpec": "MySQL / 8.0.1"
+            }
+        ]
+    }
+]

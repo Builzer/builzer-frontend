@@ -1,0 +1,11 @@
+[
+    {
+        "branchName": "main" 
+    },
+    {
+        "branchName": "develop"
+    },
+    {
+        "branchName": "feature"
+    }
+]

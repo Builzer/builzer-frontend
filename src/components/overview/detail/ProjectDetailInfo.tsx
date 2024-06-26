@@ -1,9 +1,9 @@
-import { useQuery } from "react-query"
-import { getProjectDetailInfo } from "../../../apis/overview"
-import { Button } from "antd"
+import { useQuery } from 'react-query'
+import { getProjectDetailInfo } from '../../../apis/overview'
+import { Button } from 'antd'
 import ProjectPlanButton from '../../base/common/ProjectPlanButton'
 import ProjectAuthorityButton from '../../base/common/ProjectAuthorityButton'
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 
 export default function ProjectDetailInfo({...props}) {
     const {projectId} = props
