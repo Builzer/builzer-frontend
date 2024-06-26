@@ -1,0 +1,30 @@
+[
+    {
+        "label": "main",
+        "value": "src/main",
+        "children": [
+            {
+                "label": "main",
+                "value": "src/main/java"
+            },
+            {
+                "label": "main",
+                "value": "src/main/resource"
+            }    
+        ]
+    },
+    {
+        "label": "test",
+        "value": "src/test",
+        "children": [
+            {
+                "label": "main",
+                "value": "src/test/java"
+            },
+            {
+                "label": "main",
+                "value": "src/test/resource"
+            }    
+        ]
+    }
+]

@@ -6,11 +6,11 @@ import SelectProjectTemplate from '../../components/overview/repository/SelectPr
 export default function OverviewSelectPage() {
     return <div>
         <BrowserView className='w-full h-[620px] relative'>
-            <div className="ml-40 mt-3">
+            <div className='ml-40 mt-3'>
                 <p className='text-3xl font-bold'>신규 프로젝트 배포</p>
                 <p className='font-thin'>신규 배포를 위해 깃 레포를 선택하고, 템플릿을 선택해주세요.</p>
             </div>
-            <div className="flex flex-row gap-2 px-2">
+            <div className='flex flex-row gap-2 px-2'>
                 <div className='w-3/5'>
                     <div className='m-2'>
                         <div className='relative z-10 w-full h-[520px] border-[1px] border-gray1 rounded-md bg-white'>

@@ -6,6 +6,7 @@ import LoginPage from "../pages/LoginPage"
 import MainLayoutSigned from "../layouts/MainLayoutSigned"
 import OverviewPage from "../pages/overview/OverviewPage"
 import OverviewSelectPage from "../pages/overview/OverviewSelectPage"
+import OverviewSettingPage from "../pages/overview/OverviewSettingPage"
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
         errorElement: <NotFoundPage />,
         children: [
             { index: true, path: '', element: <OverviewPage /> },
-            { path: 'select', element: <OverviewSelectPage /> }
+            { path: 'select', element: <OverviewSelectPage /> },
+            { path: 'setting', element: <OverviewSettingPage /> }
         ]
     }
 ])

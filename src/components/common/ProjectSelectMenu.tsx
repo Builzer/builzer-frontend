@@ -46,7 +46,7 @@ export default function ProjectSelectMenu() {
     if (!data || isLoading) return <></>
 
     return <div className='absolute ml-[-50px] mt-2'>
-        <div className='relative z-20 cursor-pointer px-3 text-white w-[200px] h-[40px] bg-black rounded-md font-light' onClick={() => setIsMenuShow(!isMenuShow)}>
+        <div className='relative z-20 cursor-pointer px-3 text-white w-[200px] h-[40px] bg-gray13 rounded-md font-light' onClick={() => setIsMenuShow(!isMenuShow)}>
             {
                 project.projectName === '' ? (
                     <div className='flex flex-row justify-between'>

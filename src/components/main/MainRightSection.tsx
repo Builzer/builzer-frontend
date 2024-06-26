@@ -1,7 +1,7 @@
-import { Button } from "antd"
-import Main01 from "../../assets/images/main/Main01.svg"
-import Main02 from "../../assets/images/main/Main02.svg"
-import Main03 from "../../assets/images/main/Main03.svg"
+import { Button } from 'antd'
+import Main01 from '../../assets/images/main/Main01.svg'
+import Main02 from '../../assets/images/main/Main02.svg'
+import Main03 from '../../assets/images/main/Main03.svg'
 
 export default function MainRightSection() {
     return <div className='w-full h-full'>

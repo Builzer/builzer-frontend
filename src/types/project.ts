@@ -26,8 +26,49 @@ export interface planInfo {
 }
 
 export interface recentSettingInfo {
+    projectSpecId: number
     languageSpec: string
     buildTools: string
     serverSpec: string
     dbSpec: string | null
+}
+
+export interface projectDefaultInfo {
+    gitRepository: string
+    projectPlan: string
+    projectSpecId: number
+}
+
+export interface projectBuildInfo {
+    projectInfo: {
+        projectName: string,
+        projectPlan: string,
+        domain: string,
+        gitRepository: string
+    },
+    projectSpec: {
+        branch: string,
+        rootPath: string,
+        buildTools: string,
+        language: {
+            type: string,
+            version: string,
+            provider: string
+        },
+        serverSpec: {
+            name: string,
+            cpu: string,
+            memory: string,
+            cloudProvider: string,
+            credit: number
+        },
+        dbSpec: {
+            dbType: string,
+            dbVersion: string,
+            dbId: string,
+            dbPw: string
+        },
+        isRunTest: boolean,
+        envList: Array<any>
+    }
 }

@@ -4,12 +4,15 @@ import SpringImg from '../../../assets/images/overview/Spring.svg'
 import LockImg from '../../../assets/images/overview/Lock.svg'
 import { Button } from 'antd'
 import { useEffect, useState } from 'react'
-import { repositoryList } from '../../../types/project'
+import { projectDefaultInfo, repositoryList } from '../../../types/project'
+import { useSetRecoilState } from 'recoil'
+import { projectDefaultInfoState } from '../../../recoil/atoms/project'
 
 export default function GitRepositoryList({...props}) {
     const { orgName, searchText } = props
     const [selectedRepo, setSelectedRepo] = useState<string>('')
     const [repoList, setRepoList] = useState<Array<repositoryList>>([])
+    const setProjectDefaultInfo = useSetRecoilState<projectDefaultInfo>(projectDefaultInfoState)
 
     const { data, isLoading } = useQuery({
         queryKey: ['getGitRepositoryList', orgName],
@@ -18,6 +21,11 @@ export default function GitRepositoryList({...props}) {
 
     const handleRepository = (repoName: string) => {
         setSelectedRepo(repoName)
+        
+        setProjectDefaultInfo((prev) => ({
+            ...prev,
+            gitRepository: repoName
+        }))
     }
 
     useEffect(() => {
@@ -43,7 +51,7 @@ export default function GitRepositoryList({...props}) {
                         }
                         <p className='mt-1'>{item.repoName}</p>
                         {
-                            item.isPrivate ? <img className='w-4' src={LockImg} alt="프라이빗" /> : <></>
+                            item.isPrivate ? <img className='w-4' src={LockImg} alt='프라이빗' /> : <></>
                         }
                         <p className='mt-1 font-light text-gray10'>{item.updatedAt}</p>
                     </div>
@@ -53,7 +61,7 @@ export default function GitRepositoryList({...props}) {
                         disabled={selectedRepo === item.repoName}
                         style={{width: 100}}
                     >
-                        {selectedRepo === item.repoName ? 'Selected' : 'Select'}
+                        {selectedRepo === item.repoName ? '선택됨' : '선택'}
                     </Button>
                 </div>
             ))

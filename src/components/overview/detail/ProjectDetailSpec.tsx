@@ -1,6 +1,6 @@
-import { useQuery } from "react-query"
-import { getProjectDetailInfo } from "../../../apis/overview"
-import { Button, Input } from "antd"
+import { useQuery } from 'react-query'
+import { getProjectDetailInfo } from '../../../apis/overview'
+import { Button, Input } from 'antd'
 import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined'
 import RouteOutlinedIcon from '@mui/icons-material/RouteOutlined'
 import CreditImg from '../../../assets/images/Credit.svg'

@@ -6,6 +6,8 @@ import collaborators from '../json/getCollaborators.json'
 import organizations from '../json/getGitOrganizations.json'
 import repositoryList from '../json/getGitRepositoryList.json'
 import recentSettingList from '../json/getProjectRecentSettings.json'
+import gitBranchList from '../json/getBranchList.json'
+import gitFolderList from '../json/getFolderList.json'
 
 /**
  * 본인이 속한 프로잭트 정보
@@ -76,5 +78,29 @@ export const getProjectRecentSettings = async() => {
     // )
 
     const data = recentSettingList
+    return data
+}
+
+/**
+ * 깃 브랜치 목록
+ */
+export const getGitBranchList = async(repoNm: string) => {
+    // const { data } = await authInstance.get(
+    //     `/projects/${repoNm}/branches`
+    // )
+
+    const data = gitBranchList
+    return data
+}
+
+/**
+ * 깃 레포 폴더 목록
+ */
+export const getGitFolderList = async(repoNm: string, branch: string) => {
+    // const { data } = await authInstance.get(
+    //     `/projects/${repoNm}/folders?branch=${branch}${path ? '&path=' + path : ''}`
+    // )
+
+    const data = gitFolderList
     return data
 }

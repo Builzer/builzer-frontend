@@ -7,12 +7,14 @@
         },
         "setting": [
             {
+                "projectSpecId": 1,
                 "languageSpec": "Java / 17.0.8",
                 "buildTools": "Gradle",
                 "serverSpec": "t3.nano",
                 "dbSpec": null
             },
             {
+                "projectSpecId": 2,
                 "languageSpec": "Java / 17.0.8",
                 "buildTools": "Gradle",
                 "serverSpec": "t3.small",
@@ -29,12 +31,14 @@
         },
         "setting": [
             {
+                "projectSpecId": 3,
                 "languageSpec": "Java / 17.0.8",
                 "buildTools": "Gradle",
                 "serverSpec": "t3.micro",
                 "dbSpec": "MySQL / 8.0.1"
             },
             {
+                "projectSpecId": 4,
                 "languageSpec": "Java / 17.0.8",
                 "buildTools": "Gradle",
                 "serverSpec": "t3.small",
