@@ -17,6 +17,7 @@ export default function ProjectDetailSetting() {
     const [projectBuildInfo, setProjectBuildInfo] = useRecoilState<projectBuildInfo>(projectBuildState)
     const resetProjectBuildInfo = useResetRecoilState(projectBuildState)
     const projectCollaborators = useRecoilValue<Array<selectItem>>(projectCollaboratorsState)
+    const resetProjectCollaborators = useResetRecoilState(projectCollaboratorsState)
     const [domain, setDomain] = useState<string>('')
     const [dbId, setDbId] = useState<string>()
     const [dbPw, setDbPw] = useState<string>()
@@ -98,6 +99,7 @@ export default function ProjectDetailSetting() {
         {
             onSuccess: () => {
                 resetProjectBuildInfo()
+                resetProjectCollaborators()
                 window.location.href = '/overview/deploy'
             },
             onError: () => {
