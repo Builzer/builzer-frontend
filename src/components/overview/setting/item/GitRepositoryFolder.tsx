@@ -10,7 +10,6 @@ export default function GitRepositoryFolder({...props}) {
     const projectDefaultInfo = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
     const setProjectBuildInfo = useSetRecoilState<projectBuildInfo>(projectBuildState)
 
-
     const { data, isLoading } = useQuery({
         queryKey: ['getGitFilderList', branch],
         queryFn: () => getGitFolderList(projectDefaultInfo.gitRepository, branch)
@@ -25,12 +24,13 @@ export default function GitRepositoryFolder({...props}) {
             }
         }))
     }
-    
+
     if (!data || isLoading) return <></>
 
     return <div className='mt-5'>
         <TreeSelect
             placeholder='루트 폴더 선택'
+            defaultValue='/'
             treeLine={true}
             treeData={data}
             style={{width: 300}}

@@ -10,7 +10,7 @@ export const projectDefaultInfoState = atom<projectDefaultInfo>({
     default: {
         gitRepository: '',
         projectPlan: '',
-        projectSpecId: 0
+        projectSpecId: undefined
     },
     effects_UNSTABLE: [persistAtom]
 })

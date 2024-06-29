@@ -2,8 +2,18 @@ import { BrowserView } from 'react-device-detect'
 import BackgroundImg from '../../assets/images/Background.svg'
 import ProjectGitRepository from '../../components/overview/ProjectGitRepository'
 import SelectProjectTemplate from '../../components/overview/repository/SelectProjectTemplate'
+import { useResetRecoilState } from 'recoil'
+import { projectDefaultInfoState } from '../../recoil/atoms/project'
+import { useEffect } from 'react'
 
 export default function OverviewSelectPage() {
+    const resetProjectDefaultInfo = useResetRecoilState(projectDefaultInfoState)
+
+    useEffect(() => {
+        resetProjectDefaultInfo()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    
     return <div>
         <BrowserView className='w-full h-[620px] relative'>
             <div className='ml-40 mt-3'>

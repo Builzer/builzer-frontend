@@ -1,20 +1,22 @@
 import { useQuery } from 'react-query'
 import { getProjectRecentSettings } from '../../../apis/overview'
 import { useState } from 'react'
-import { projectDefaultInfo, recentSettingInfo } from '../../../types/project'
+import { projectBuildInfo, projectDefaultInfo, recentSettingInfo } from '../../../types/project'
 import PlanBg from '../../../assets/images/overview/PlanBg.svg'
 import CreditImg from '../../../assets/images/Credit.svg'
 import { Button, Empty, notification } from 'antd'
-import { useRecoilState } from 'recoil'
-import { projectDefaultInfoState } from '../../../recoil/atoms/project'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { projectBuildState, projectDefaultInfoState } from '../../../recoil/atoms/project'
 import { useNavigate } from 'react-router-dom'
 
 export default function SelectProjectTemplate() {
     const [plan, setPlan] = useState<string>('')
     const [projectSpecId, setProjectSpecId] = useState<number>()
     const [setting, setSetting] = useState<recentSettingInfo>()
+    const setProjectBuildInfo = useSetRecoilState<projectBuildInfo>(projectBuildState)
     const [projectDefaultInfo, setProjectDefaultInfo] = useRecoilState<projectDefaultInfo>(projectDefaultInfoState)
     const [toast, contextHolder] = notification.useNotification()
+
     const navigate = useNavigate()
 
     const { data, isLoading } = useQuery({
@@ -27,6 +29,13 @@ export default function SelectProjectTemplate() {
         setProjectDefaultInfo((prev) => ({
             ...prev,
             projectPlan: plan
+        }))
+        setProjectBuildInfo((prev) => ({
+            ...prev,
+            projectInfo: {
+                ...prev.projectInfo,
+                projectPlan: plan
+            }
         }))
     }
     const handleRecentSetting = (item: recentSettingInfo) => {
@@ -43,15 +52,48 @@ export default function SelectProjectTemplate() {
             toast['warning']({
                 message: '깃 레포를 선택해주세요.',
             })
-        } else if (setting || projectDefaultInfo.projectPlan === '') {
+        } else if (projectDefaultInfo.projectPlan === '') {
             toast['warning']({
                 message: '프로젝트 플랜을 선택해주세요.',
             })
         } else {
+            if (!setting) {
+                setProjectBuildInfo((prev) => ({
+                    projectInfo: {
+                        ...prev.projectInfo,
+                        projectName: '',
+                        domain: '',
+                    },
+                    projectSpec: {
+                        ...prev.projectSpec,
+                        buildTools: '',
+                        language: {
+                            type: '',
+                            version: '',
+                            provider: ''
+                        },
+                        serverSpec: {
+                            name: '',
+                            cpu: '',
+                            memory: '',
+                            cloudProvider: '',
+                            credit: 0
+                        },
+                        dbSpec: {
+                            dbType: '',
+                            dbVersion: '',
+                            dbId: '',
+                            dbPw: ''
+                        },
+                        isRunTest: true,
+                        envList: []
+                    }
+                }))
+            }
             navigate('/overview/setting')
         }
     }
-
+    
     if (!data || isLoading) return <></>
 
     return <div className='w-full h-full p-2'>

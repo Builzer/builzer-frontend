@@ -132,7 +132,7 @@ export default function ProjectSelect({...props}) {
             </div>
             <div className=' h-[500px] bg-white mt-2 rounded-md overflow-y-auto p-2'>
                 {projectList.map((project, index) => (
-                    <div key={index} className={`cursor-pointer px-2 py-2 flex flex-row justify-between hover:bg-gray1 ${projectId === project.projectId ? 'bg-gray2 hover:bg-gray2' : ''}`} onClick={() => setProjectId(project.projectId)}>
+                    <div key={index} className={`cursor-pointer px-2 py-2 flex flex-row justify-between hover:bg-gray1 ${projectId === project.projectSpecId ? 'bg-gray2 hover:bg-gray2' : ''}`} onClick={() => setProjectId(project.projectSpecId)}>
                         <div className='flex flex-row gap-3'>
                             <p>{project.projectName}</p>
                             <ProjectPlanButton plan={project.projectPlan} />
