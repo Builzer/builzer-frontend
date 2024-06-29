@@ -8,6 +8,10 @@ import repositoryList from '../json/getGitRepositoryList.json'
 import recentSettingList from '../json/getProjectRecentSettings.json'
 import gitBranchList from '../json/getBranchList.json'
 import gitFolderList from '../json/getFolderList.json'
+import languageList from '../json/getLanguageList.json'
+import specList from '../json/getSpecList.json'
+import dbList from '../json/getDatabaseList.json'
+import { projectBuildInfo } from '../types/project'
 
 /**
  * 본인이 속한 프로잭트 정보
@@ -24,13 +28,18 @@ export const getProjectList = async() => {
 /**
  * 프로젝트 정보 상세
  */
-export const getProjectDetailInfo = async(id: string) => {
-    // const { data } = await authInstance.get(
-    //     `/projects/${id}`
-    // )
+export const getProjectDetailInfo = async(id: number | undefined) => {
+    if (id) {
+        // const { data } = await authInstance.get(
+        //     `/projects/${id}`
+        // )
 
-    const data = projectInfo
-    return data
+        // return data
+        const data = projectInfo
+        return data
+    } else {
+        return null
+    }
 }
 
 /**
@@ -102,5 +111,94 @@ export const getGitFolderList = async(repoNm: string, branch: string) => {
     // )
 
     const data = gitFolderList
+    return data
+}
+
+/**
+ * 도메인 유효성 체크
+ */
+export const checkProjectDomain = async(domain: string) => {
+    // return await authInstance.get(
+    //     `/projects/check-domain?domainName=${domain}`
+    // )
+
+    if (domain === 'duplicate') {
+        return {
+            code: 409,
+            message: 'Conflict',
+            data: 'Duplicated Domain URL'
+        }
+    } else if (domain === 'fail') {
+        return {
+            code: 400,
+            message: 'Bad Request',
+            data: 'Unavailable Domain URL'
+        }
+    } else {
+        return {
+            code: 200,
+            message: 'OK',
+            data: 'Available Domain URL'
+        }
+    }
+}
+
+/**
+ * 지원 언어 목록
+ */
+export const getLanguageList = async() => {
+    // const { data } = await authInstance.get(
+    //     'projects/languages'
+    // )
+
+    // return data
+
+    const data = languageList
+    return data
+}
+/**
+ * 지원 스펙 목록
+ */
+export const getSpecList = async() => {
+    // const { data } = await authInstance.get(
+    //     'projects/languages'
+    // )
+
+    // return data
+
+    const data = specList
+    return data
+}
+
+/**
+ * 지원 DB 목록
+ */
+export const getDatabaseList = async() => {
+    // const { data } = await authInstance.get(
+    //     'projects/languages'
+    // )
+
+    // return data
+
+    const data = dbList
+    return data
+}
+
+/**
+ * 신규 배포 시작
+ */
+export const startDeploy = async(projectInfo: projectBuildInfo) => {
+    // const { data } = await authInstance.post(
+    //     '/projects/runs', projectInfo
+    // )
+
+    // return data
+
+    const data = {
+        code: 201,
+        message: 'Created',
+        data: []
+    }
+
     return data
 }

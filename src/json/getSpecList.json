@@ -1,0 +1,51 @@
+[
+    {
+        "name": "t3.nano",
+        "memory": "0.5 GiB",
+        "vCPU": "2 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 0.0
+    },
+    {
+        "name": "t3.micro",
+        "memory": "1 GiB",
+        "vCPU": "2 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 1.0
+    },
+    {
+        "name": "t3.small",
+        "memory": "2 GiB",
+        "vCPU": "2 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 2.0
+    },
+    {
+        "name": "t3.medium",
+        "memory": "4 GiB",
+        "vCPU": "2 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 3.0
+    },
+    {
+        "name": "t3.large",
+        "memory": "8 GiB",
+        "vCPU": "2 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 4.0
+    },
+    {
+        "name": "t3.xlarge",
+        "memory": "10 GiB",
+        "vCPU": "4 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 5.0
+    },
+    {
+        "name": "t3.2xlarge",
+        "memory": "32 GiB",
+        "vCPU": "8 vCPU",
+        "cloudProvider": "Amazon Web Services",
+        "credit": 6.0
+    }
+]

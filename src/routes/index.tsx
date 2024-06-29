@@ -7,6 +7,7 @@ import MainLayoutSigned from "../layouts/MainLayoutSigned"
 import OverviewPage from "../pages/overview/OverviewPage"
 import OverviewSelectPage from "../pages/overview/OverviewSelectPage"
 import OverviewSettingPage from "../pages/overview/OverviewSettingPage"
+import OverviewDeployPage from "../pages/overview/OverviewDeployPage"
 
 const router = createBrowserRouter([
     {
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
         children: [
             { index: true, path: '', element: <OverviewPage /> },
             { path: 'select', element: <OverviewSelectPage /> },
-            { path: 'setting', element: <OverviewSettingPage /> }
+            { path: 'setting', element: <OverviewSettingPage /> },
+            { path: 'deploy', element: <OverviewDeployPage /> }
         ]
     }
 ])

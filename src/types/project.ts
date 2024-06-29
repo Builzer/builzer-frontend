@@ -9,7 +9,7 @@ export interface projectList {
     projectName: string
     projectPlan: string
     projectStatus: string
-    projectId: string
+    projectSpecId: string
 }
 
 export interface repositoryList {
@@ -36,14 +36,52 @@ export interface recentSettingInfo {
 export interface projectDefaultInfo {
     gitRepository: string
     projectPlan: string
-    projectSpecId: number
+    projectSpecId: number | undefined
+}
+
+export interface projectDetailInfo {
+    projectInfo: {
+        projectName: string
+        projectPlan: string
+        authority: string
+        projectStatus: string
+        domain: string
+        gitRepository: string
+        lastDisabledDate: string
+        lastPaidDate: string
+    },
+    projectSpec: {
+        branch: string,
+        rootPath: string,
+        buildTools: string,
+        language: {
+            type: string,
+            version: string,
+            provider: string
+        },
+        serverSpec: {
+            name: string,
+            cpu: string,
+            memory: string,
+            cloudProvider: string,
+            credit: number
+        },
+        dbSpec: {
+            dbType: string,
+            dbVersion: string,
+            dbId: string,
+            dbPw: string
+        },
+        isRunTest: boolean,
+        envList: Array<any>
+    }
 }
 
 export interface projectBuildInfo {
     projectInfo: {
-        projectName: string,
-        projectPlan: string,
-        domain: string,
+        projectName: string
+        projectPlan: string
+        domain: string
         gitRepository: string
     },
     projectSpec: {

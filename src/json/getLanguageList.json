@@ -1,0 +1,20 @@
+[
+    {
+        "type": "Java",
+        "version": ["8.0.8", "11.0.8", "17.0.8", "21.0.8", "23.0.8"],
+        "provider": ["Oracle", "OpenJDK", "Amazon Corretto"],
+        "buildTools": ["Maven", "Gradle"] 
+    },
+    {
+        "type": "Kotlin",
+        "version": ["8.0.8", "11.0.8", "17.0.8", "21.0.8", "23.0.8"],
+        "provider": ["Oracle", "OpenJDK", "Amazon Corretto"],
+        "buildTools": ["Maven", "Gradle"] 
+    },
+    {
+        "type": "Python",
+        "version": ["8.0.8", "11.0.8", "17.0.8", "21.0.8", "23.0.8"],
+        "provider": ["Oracle", "OpenJDK", "Amazon Corretto"],
+        "buildTools": ["Maven", "Gradle"] 
+    }
+]

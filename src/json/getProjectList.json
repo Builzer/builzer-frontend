@@ -1,7 +1,7 @@
 {
     "projects" : [
         {
-            "projectId": "1",
+            "projectSpecId": "1",
             "projectName" : "Test Repo 1",
             "projectStatus" : "####",
             "projectPlan" : "lite",
@@ -10,7 +10,7 @@
             "createdAt" : "2024-06-22"
         },
         {
-            "projectId": "2",
+            "projectSpecId": "2",
             "projectName" : "Test Repo 2",
             "projectStatus" : "####",
             "projectPlan" : "lite",

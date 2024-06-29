@@ -6,13 +6,16 @@ import ProjectDetailSpec from './detail/ProjectDetailSpec'
 import ProjectDetailInfo from './detail/ProjectDetailInfo'
 import ProjectDetailCollaborators from './detail/ProjectDetailCollaborators'
 import { NavLink } from 'react-router-dom'
+import { useResetRecoilState } from 'recoil'
+import { projectBuildState } from '../../recoil/atoms/project'
 
 export default function ProjectInfo({...props}) {
     const {projectId} = props
+    const resetProjectBuildInfo = useResetRecoilState(projectBuildState)
 
     return <div className='w-full h-full relative mt-14'>
         <NavLink to='/overview/select'>
-            <Button type='primary' className='w-[590px] font-bold bg-black'>
+            <Button type='primary' className='w-[590px] font-bold bg-black' onClick={() => resetProjectBuildInfo()}>
                 <p>신규 프로젝트 생성</p>
                 <ControlPointIcon />
             </Button>

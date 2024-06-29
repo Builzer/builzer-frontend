@@ -1,19 +1,33 @@
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import GitRepositoryInfo from '../../components/overview/setting/GitRepositoryInfo'
 import GitRepositoryFolder from '../../components/overview/setting/item/GitRepositoryFolder'
 import { projectBuildInfo } from '../../types/project'
 import { projectBuildState, projectCollaboratorsState } from '../../recoil/atoms/project'
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined'
 import { Select, notification } from 'antd'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { selectItem } from '../../types/common'
+import { DownOutlined } from '@ant-design/icons'
+import ProjectDetailSetting from '../../components/overview/setting/ProjectDetailSetting'
 
 export default function OverviewSettingPage() {
     const [api, contextHolder] = notification.useNotification()
     const projectBuildInfo = useRecoilValue<projectBuildInfo>(projectBuildState)
     const [projectCollaborators, setProjectCollaborators] = useRecoilState<Array<selectItem>>(projectCollaboratorsState)
+    const resetProjectCollaborators = useResetRecoilState(projectCollaboratorsState)
     const [value, setValue] = useState<string>('')
     const [options, setOptions] = useState<Array<selectItem>>(projectCollaborators)
+
+    const MAX_COUNT = projectBuildInfo.projectInfo.projectPlan === 'Lite' ? 3 : 50
+
+    const suffix = (
+        <>
+            <span>
+            {value.length} / {MAX_COUNT}
+            </span>
+            <DownOutlined />
+        </>
+    )
 
     const emailCheck = (value: string) => {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i
@@ -54,7 +68,12 @@ export default function OverviewSettingPage() {
         setProjectCollaborators(projectCollaborators.filter((option) => option !== value))
     }
 
-    return <div className='w-full h-full relative'>
+    useEffect(() => {
+        resetProjectCollaborators()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    
+    return <div className='w-full h-full relative overflow-auto'>
         {contextHolder}
         <div className='w-full h-[200px] bg-black' />
         <p className='absolute text-2xl top-3 left-40 text-white font-light'>단계에 따라 프로젝트를 구성하고 배포해보세요!</p>
@@ -79,9 +98,14 @@ export default function OverviewSettingPage() {
                 onKeyDown={handleKeyDown}
                 onSearch={handleSearch}
                 onDeselect={handleDeSelect}
+                maxTagCount={'responsive'}
+                suffixIcon={suffix}
+                maxCount={MAX_COUNT}
             />
         </div>
-        <div className='w-full h-[100px] bg-gray1'></div>
+        <div className='w-full mb-2'>
+            <ProjectDetailSetting />
+        </div>
         </div>
     </div>
 }
