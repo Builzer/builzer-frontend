@@ -18,6 +18,7 @@ export default function ProjectDetailSetting() {
     const [dbId, setDbId] = useState<string>()
     const [dbPw, setDbPw] = useState<string>()
     const [isDomainValid, setIsDomainValid] = useState<boolean>(false)
+    const [isUseDb, setIsUseDb] = useState<boolean>(false)
 
     const { data, isLoading } = useQuery({
         queryKey: ['getProjectDetailInfo'],
@@ -27,12 +28,13 @@ export default function ProjectDetailSetting() {
     const handleStartDeploy = () => {
         if (!isDomainValid) {
             message.error('도메인 유효성 검사를 진행해주세요.')
-        } else if (!dbId) {
+        } else if (isUseDb && !dbId) {
             message.error('데이터베이스 아이디를 입력해주세요.')
-        } else if (!dbPw) {
+        } else if (isUseDb && !dbPw) {
             message.error('데이터베이스 비밀번호를 입력해주세요.')
         } else {
-            startDeployMutation.mutate()
+            console.log(projectBuildInfo)
+            // startDeployMutation.mutate()
         }
     }
 
@@ -120,6 +122,22 @@ export default function ProjectDetailSetting() {
             projectSpec: {
                 ...prev.projectSpec,
                 isRunTest: e.target.checked
+            }
+        }))
+    }
+
+    const handleIsUseDb: CheckboxProps['onChange'] = (e) => {
+        setIsUseDb(e.target.checked)
+        setProjectBuildInfo((prev) => ({
+            ...prev,
+            projectSpec: {
+                ...prev.projectSpec,
+                dbSpec: {
+                    dbType: '',
+                    dbVersion: '',
+                    dbId: '',
+                    dbPw: ''
+                }
             }
         }))
     }
@@ -297,9 +315,18 @@ export default function ProjectDetailSetting() {
                 <SelectServerSpec projectBuildInfo={projectBuildInfo} setProjectBuildInfo={setProjectBuildInfo} />
             </div>
             <div className='w-full flex flex-col gap-5 relative'>
-                <ProjectSettingTitle title={'데이터베이스'} />
+                <div className='flex flex-row gap-2'>
+                    <ProjectSettingTitle title={'데이터베이스'} />
+                    <Checkbox
+                        className='mt-3'
+                        checked={isUseDb}
+                        onChange={handleIsUseDb}
+                    >
+                        데이터베이스 세팅
+                    </Checkbox>
+                </div>
                 <div>
-                    <SelectDatabase projectBuildInfo={projectBuildInfo} setProjectBuildInfo={setProjectBuildInfo} />
+                    <SelectDatabase projectBuildInfo={projectBuildInfo} setProjectBuildInfo={setProjectBuildInfo} isUseDb={isUseDb} />
                     <div className='w-full flex flex-row gap-5'>
                         <div className='w-1/2'>
                             <span className='font-medium text-gray5'>아이디</span>
@@ -307,7 +334,7 @@ export default function ProjectDetailSetting() {
                                 name='projectSpec.dbSpec.dbId'
                                 rules={[
                                     {
-                                        required: projectBuildInfo.projectInfo.projectPlan === 'Lite' ? false : true,
+                                        required: projectBuildInfo.projectInfo.projectPlan === 'Lite' ? false : isUseDb ? true : false,
                                         message: '아이디를 입력해주세요.'
                                     }
                                 ]}
@@ -321,7 +348,7 @@ export default function ProjectDetailSetting() {
                                 name='projectSpec.dbSpec.dbPw'
                                 rules={[
                                     {
-                                        required: projectBuildInfo.projectInfo.projectPlan === 'Lite' ? false : true,
+                                        required: projectBuildInfo.projectInfo.projectPlan === 'Lite' ? false : isUseDb ? true : false,
                                         message: '비밀번호를 입력해주세요.'
                                     }
                                 ]}
@@ -335,7 +362,7 @@ export default function ProjectDetailSetting() {
                     projectBuildInfo.projectInfo.projectPlan === 'Lite' ? 
                     (
                         <div>
-                            <div className='absolute z-10 top-12 w-[805px] h-[150px] bg-gray10 opacity-50 rounded-md'>
+                            <div className='absolute z-10 top-12 w-[805px] h-[160px] bg-gray10 opacity-50 rounded-md'>
                             
                             </div>
                             <div className='absolute w-full top-20 z-20'>
@@ -354,7 +381,15 @@ export default function ProjectDetailSetting() {
                     )
                     :
                     (
-                        <></>
+                        <div>
+                            {isUseDb ? 
+                                (<></>)
+                                :
+                                (
+                                    <div className='absolute z-10 top-12 w-[805px] h-[160px] bg-gray10 opacity-50 rounded-md' />
+                                )
+                            }
+                        </div>
                     )
                 }
             </div>

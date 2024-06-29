@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Form, Select } from 'antd'
 
 export default function SelectDatabase({...props}) {
-    const {projectBuildInfo, setProjectBuildInfo} = props
+    const {projectBuildInfo, setProjectBuildInfo, isUseDb} = props
     const [types, setTypes] = useState<Array<string>>()
     const [versions, setVersions] = useState<any>()
     const [databaseType, setDatabaseType] = useState<string>()
@@ -61,7 +61,7 @@ export default function SelectDatabase({...props}) {
             setVersions(tmpVersions)
 
             if (projectBuildInfo.projectSpec.dbSpec.dbType === '') {
-                if (projectBuildInfo.projectInfo.projectPlan === 'Pro') {
+                if (projectBuildInfo.projectInfo.projectPlan === 'Pro' && isUseDb) {
                     setProjectBuildInfo(() => ({
                         ...projectBuildInfo,
                         projectSpec: {
@@ -83,7 +83,7 @@ export default function SelectDatabase({...props}) {
             }
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data, projectBuildInfo])
+    }, [data, projectBuildInfo, isUseDb])
 
     if (!data || isLoading || !types || !versions || !databaseType || !databaseVersion) return <></>
 
@@ -94,6 +94,7 @@ export default function SelectDatabase({...props}) {
         >
             <Select
                 defaultValue={types[0]}
+                value={databaseType}
                 options={types.map((type) => ({ label: type, value: type}))}
                 onChange={handleDatabaseType}
                 size='large'
