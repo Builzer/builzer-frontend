@@ -18,12 +18,12 @@ export default function OverviewSettingPage() {
     const [value, setValue] = useState<string>('')
     const [options, setOptions] = useState<Array<selectItem>>(projectCollaborators)
 
-    const MAX_COUNT = projectBuildInfo.projectInfo.projectPlan === 'Lite' ? 3 : 50
+    const MAX_COUNT = projectBuildInfo.projectInfo.projectPlan === 'Lite' ? 2 : 50
 
     const suffix = (
         <>
             <span>
-            {value.length} / {MAX_COUNT}
+            {projectCollaborators.length} / {MAX_COUNT}
             </span>
             <DownOutlined />
         </>
@@ -40,22 +40,30 @@ export default function OverviewSettingPage() {
 
     const handleKeyDown = (e: any) => {
         if (e.code === 'Enter') {
-            if (emailCheck(value)) {
-                const tmpOption = {
-                    value: value,
-                    label: value
+            if (value !== '') {
+                if (emailCheck(value)) {
+                    const tmpOption = {
+                        value: value,
+                        label: value
+                    }
+                    
+                    setOptions([...options, tmpOption])
+                    setValue('')
+                    
+                } else {
+                    api['warning']({
+                        message: '입력값이 유효하지 않습니다.',
+                        description: '올바른 이메일 형식을 입력해주세요.'
+                      })
                 }
-    
-                setOptions([...options, tmpOption])
-                setProjectCollaborators([...projectCollaborators, tmpOption])
-                setValue('')
             } else {
-                api['warning']({
-                    message: '입력값이 유효하지 않습니다.',
-                    description: '올바른 이메일 형식을 입력해주세요.'
-                  })
+                if (value !== '') {}
+                const tmpOption = {
+                    value: options[options.length-1].value,
+                    label: options[options.length-1].value
+                }
+                setProjectCollaborators([...projectCollaborators, tmpOption])
             }
-            
         }
     }
 

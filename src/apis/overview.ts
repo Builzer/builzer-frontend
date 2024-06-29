@@ -185,6 +185,28 @@ export const getDatabaseList = async() => {
 }
 
 /**
+ * 팀원 초대
+ */
+export const inviteCollaborators = async(projectId: number, list: Array<string>) => {
+    // const { data } = await authInstance.post(
+    //     `/projects/${projectId}/invitation`,
+    //     {
+    //         memberEmails: list
+    //     }
+    // )
+
+    // return data
+
+    const data = {
+        code: 200,
+        message: 'Success',
+        data: 1
+    }
+
+    return data
+}
+
+/**
  * 신규 배포 시작
  */
 export const startDeploy = async(projectInfo: projectBuildInfo) => {
