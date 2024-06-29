@@ -1,8 +1,8 @@
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
 import { projectBuildInfo, projectDefaultInfo } from '../../../types/project'
-import { projectBuildState, projectDefaultInfoState } from '../../../recoil/atoms/project'
+import { projectBuildState, projectCollaboratorsState, projectDefaultInfoState } from '../../../recoil/atoms/project'
 import { useMutation, useQuery } from 'react-query'
-import { checkProjectDomain, getProjectDetailInfo, startDeploy } from '../../../apis/overview'
+import { checkProjectDomain, getProjectDetailInfo, inviteCollaborators, startDeploy } from '../../../apis/overview'
 import { useEffect, useState } from 'react'
 import ProjectPlanButton from '../../base/common/ProjectPlanButton'
 import ProjectSettingTitle from '../../base/project/ProjectSettingTitle'
@@ -10,10 +10,13 @@ import { Input, Form, Button, Radio, RadioChangeEvent, Checkbox, CheckboxProps, 
 import SelectLanguage from '../../base/project/SelectLanguage'
 import SelectServerSpec from '../../base/project/SelectServerSpec'
 import SelectDatabase from '../../base/project/SelectDatabase'
+import { selectItem } from '../../../types/common'
 
 export default function ProjectDetailSetting() {
     const projectDefaultValue = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
     const [projectBuildInfo, setProjectBuildInfo] = useRecoilState<projectBuildInfo>(projectBuildState)
+    const resetProjectBuildInfo = useResetRecoilState(projectBuildState)
+    const projectCollaborators = useRecoilValue<Array<selectItem>>(projectCollaboratorsState)
     const [domain, setDomain] = useState<string>('')
     const [dbId, setDbId] = useState<string>()
     const [dbPw, setDbPw] = useState<string>()
@@ -33,8 +36,7 @@ export default function ProjectDetailSetting() {
         } else if (isUseDb && !dbPw) {
             message.error('데이터베이스 비밀번호를 입력해주세요.')
         } else {
-            console.log(projectBuildInfo)
-            // startDeployMutation.mutate()
+            startDeployMutation.mutate()
         }
     }
 
@@ -73,14 +75,35 @@ export default function ProjectDetailSetting() {
         ['startDeploy'],
         () => startDeploy(projectBuildInfo),
         {
+            onSuccess: (data) => {
+                const tmpList: Array<string> = []
+                projectCollaborators.forEach((collaborator) => {
+                    tmpList.push(collaborator.value)
+                })
+
+                inviteCollaboratorsMutation.mutate({
+                    projectId: data.data,
+                    memberList: tmpList
+                })
+            },
+            onError: () => {
+
+            }
+        }
+    )
+
+    const inviteCollaboratorsMutation = useMutation(
+        ['inviteCollaborators'],
+        (props: any) => inviteCollaborators(props.projectId, props.memberList),
+        {
             onSuccess: () => {
+                resetProjectBuildInfo()
                 window.location.href = '/overview/deploy'
             },
             onError: () => {
 
             }
         }
-
     )
 
     // const checkDomain = useCallback(async (_: any, value: string) => {
