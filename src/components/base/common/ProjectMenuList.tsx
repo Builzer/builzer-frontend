@@ -7,7 +7,7 @@ export default function ProjectMenuList({...props}) {
 
     const {projects} = props
 
-    const handleProjectId = (id: string, name: string) => {
+    const handleProjectId = (id: number, name: string) => {
         setSelectedProject({
             projectId: id,
             projectName: name

@@ -9,6 +9,7 @@ import OverviewSelectPage from "../pages/overview/OverviewSelectPage"
 import OverviewSettingPage from "../pages/overview/OverviewSettingPage"
 import OverviewDeployPage from "../pages/overview/OverviewDeployPage"
 import OverviewDeployDonePage from "../pages/overview/OverviewDeployDonePage"
+import ManagementPage from "../pages/ManagementPage"
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
             { path: 'setting', element: <OverviewSettingPage /> },
             { path: 'deploy', element: <OverviewDeployPage /> },
             { path: 'done', element: <OverviewDeployDonePage /> }
+        ]
+    },
+    {
+        path: '/management',
+        element: <MainLayoutSigned />,
+        errorElement: <NotFoundPage />,
+        children: [
+            { index: true, path: '', element: <ManagementPage /> }
         ]
     }
 ])

@@ -1,5 +1,5 @@
 export interface projectInfoSimple {
-    projectId: string
+    projectId: number | undefined
     projectName: string
 }
 export interface projectList {
@@ -9,7 +9,7 @@ export interface projectList {
     projectName: string
     projectPlan: string
     projectStatus: string
-    projectSpecId: string
+    projectSpecId: number
 }
 
 export interface repositoryList {

@@ -219,7 +219,7 @@ export const startDeploy = async(projectInfo: projectBuildInfo) => {
     const data = {
         code: 201,
         message: 'Created',
-        data: '2'
+        data: 2
     }
 
     return data
