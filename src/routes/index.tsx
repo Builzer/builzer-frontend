@@ -8,6 +8,7 @@ import OverviewPage from "../pages/overview/OverviewPage"
 import OverviewSelectPage from "../pages/overview/OverviewSelectPage"
 import OverviewSettingPage from "../pages/overview/OverviewSettingPage"
 import OverviewDeployPage from "../pages/overview/OverviewDeployPage"
+import OverviewDeployDonePage from "../pages/overview/OverviewDeployDonePage"
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,8 @@ const router = createBrowserRouter([
             { index: true, path: '', element: <OverviewPage /> },
             { path: 'select', element: <OverviewSelectPage /> },
             { path: 'setting', element: <OverviewSettingPage /> },
-            { path: 'deploy', element: <OverviewDeployPage /> }
+            { path: 'deploy', element: <OverviewDeployPage /> },
+            { path: 'done', element: <OverviewDeployDonePage /> }
         ]
     }
 ])

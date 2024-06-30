@@ -63,6 +63,10 @@ export default function ProjectDeployLog() {
                 clearTimeout(stateIntervalId)
                 nextStepItems[index-1].status = 'finish'
                 nextStepItems[index-1].icon = ''
+
+                setTimeout(() => {
+                    window.location.href = '/overview/done'
+                }, 1000)
             }
         }, 5000)
 
