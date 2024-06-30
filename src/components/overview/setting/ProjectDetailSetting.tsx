@@ -1,5 +1,5 @@
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil'
-import { projectBuildInfo, projectDefaultInfo } from '../../../types/project'
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil'
+import { projectBuildInfo, projectDefaultInfo, projectInfoSimple } from '../../../types/project'
 import { projectBuildState, projectCollaboratorsState, projectDefaultInfoState } from '../../../recoil/atoms/project'
 import { useMutation, useQuery } from 'react-query'
 import { checkProjectDomain, getProjectDetailInfo, inviteCollaborators, startDeploy } from '../../../apis/overview'
@@ -11,6 +11,7 @@ import SelectLanguage from '../../base/project/SelectLanguage'
 import SelectServerSpec from '../../base/project/SelectServerSpec'
 import SelectDatabase from '../../base/project/SelectDatabase'
 import { selectItem } from '../../../types/common'
+import { selectedProjectState } from '../../../recoil/atoms/common'
 
 export default function ProjectDetailSetting() {
     const projectDefaultValue = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
@@ -18,6 +19,7 @@ export default function ProjectDetailSetting() {
     const resetProjectBuildInfo = useResetRecoilState(projectBuildState)
     const projectCollaborators = useRecoilValue<Array<selectItem>>(projectCollaboratorsState)
     const resetProjectCollaborators = useResetRecoilState(projectCollaboratorsState)
+    const setSelectedProject = useSetRecoilState<projectInfoSimple>(selectedProjectState)
     const [domain, setDomain] = useState<string>('')
     const [dbId, setDbId] = useState<string>()
     const [dbPw, setDbPw] = useState<string>()
@@ -85,6 +87,11 @@ export default function ProjectDetailSetting() {
                 inviteCollaboratorsMutation.mutate({
                     projectId: data.data,
                     memberList: tmpList
+                })
+
+                setSelectedProject({
+                    projectId: data.data,
+                    projectName: projectBuildInfo.projectInfo.projectName
                 })
             },
             onError: () => {

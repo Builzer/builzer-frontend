@@ -15,10 +15,10 @@ import { selectedProjectState } from '../../recoil/atoms/common'
 export default function ProjectSelectMenu() {
     const [isMenuShow, setIsMenuShow] = useState<boolean>(false)
     const [projectList, setProjectList] = useState<Array<projectList>>([])
-    const project = useRecoilValue<projectInfoSimple>(selectedProjectState)
+    const selectProject = useRecoilValue<projectInfoSimple>(selectedProjectState)
     
     const { data, isLoading } = useQuery({
-        queryKey: ['getProjectList'],
+        queryKey: ['getProjectList', selectProject],
         queryFn: () => getProjectList()
     })
 
@@ -48,14 +48,14 @@ export default function ProjectSelectMenu() {
     return <div className='absolute ml-[-50px] mt-2'>
         <div className='relative z-20 cursor-pointer px-3 text-white w-[200px] h-[40px] bg-gray13 rounded-md font-light' onClick={() => setIsMenuShow(!isMenuShow)}>
             {
-                project.projectName === '' ? (
+                selectProject.projectName === '' ? (
                     <div className='flex flex-row justify-between'>
                         <p className='text-xl justify-center py-2'>Select Project</p>
                         <span className='py-2'><SendIcon /></span>
                     </div>
                 ) : (
                     <div className='flex flex-row justify-between'>
-                        <p className='text-xl justify-center py-2'>{project.projectName}</p>
+                        <p className='text-xl justify-center py-2'>{selectProject.projectName}</p>
                         <span className='py-2'><ChangeCircleOutlinedIcon /></span>
                     </div>
                 )
