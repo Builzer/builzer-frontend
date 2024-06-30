@@ -19,8 +19,8 @@ export default function SettingSideMenu({...props}) {
         ['startDeploy'],
         () => startDeploy(project),
         {
-            onSuccess: (data) => {
-                console.log(project)
+            onSuccess: () => {
+                window.location.href = '/overview/deploy'
             },
             onError: () => {
 
