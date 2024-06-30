@@ -19,7 +19,7 @@ export const userGitNameState = atom({
 export const selectedProjectState = atom<projectInfoSimple>({
     key: 'selectedProjectState',
     default: {
-        projectId: '',
+        projectId: undefined,
         projectName: ''
     },
     effects_UNSTABLE: [persistAtom]
