@@ -7,6 +7,7 @@ import SettingSideMenu from '../components/base/common/SettingSideMenu'
 import { useQuery } from 'react-query'
 import { getProjectDetailInfo } from '../apis/overview'
 import ManagementProjectSetting from '../components/management/ManagementProjectSetting'
+import ManagementEnvironmentSetting from '../components/management/ManagementEnvironmentSetting'
 
 export default function ManagementPage() {
     const selectedProject = useRecoilValue<projectInfoSimple>(selectedProjectState)
@@ -56,7 +57,7 @@ export default function ManagementPage() {
                         managementMenu === '프로젝트 세팅' ?
                         (<ManagementProjectSetting project={projectSetting} setProject={setProjectSetting} isUseDb={isUseDb} setIsUseDb={setIsUseDb} />)
                         :
-                        ('환경변수 세팅')
+                        (<ManagementEnvironmentSetting project={projectSetting} setProject={setProjectSetting} />)
                     }
                 </div>
             </div>
