@@ -1,4 +1,4 @@
-import { PauseCircleFilled, PlayCircleFilled } from "@ant-design/icons";
+import { PauseCircleFilled, PlayCircleFilled } from '@ant-design/icons'
 
 export default function ProjectDeployHandle() {
     return <div className='flex flex-row gap-5 mt-10'>

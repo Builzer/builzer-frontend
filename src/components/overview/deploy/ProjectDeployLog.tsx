@@ -101,7 +101,7 @@ export default function ProjectDeployLog() {
                                     {
                                         index < 3 && stepCurrent === index ? <LoadingOutlined />
                                         :
-                                        index < stepCurrent || (index === stepCurrent) && index === 3 ?
+                                        (index < stepCurrent) || ((index === stepCurrent) && index === 3) ?
                                         <CheckCircleFilled className='text-green' style={{ fontSize: 30 }} />
                                         :
                                         '' 
