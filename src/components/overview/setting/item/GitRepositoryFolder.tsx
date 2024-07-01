@@ -1,18 +1,17 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { projectBuildInfo, projectDefaultInfo } from '../../../../types/project'
-import { projectBuildState, projectDefaultInfoState } from '../../../../recoil/atoms/project'
+import { useSetRecoilState } from 'recoil'
+import { projectBuildInfo } from '../../../../types/project'
+import { projectBuildState } from '../../../../recoil/atoms/project'
 import { useQuery } from 'react-query'
 import { getGitFolderList } from '../../../../apis/overview'
 import { TreeSelect } from 'antd'
 
 export default function GitRepositoryFolder({...props}) {
-    const {branch} = props
-    const projectDefaultInfo = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
+    const {branch, value} = props
     const setProjectBuildInfo = useSetRecoilState<projectBuildInfo>(projectBuildState)
 
     const { data, isLoading } = useQuery({
         queryKey: ['getGitFilderList', branch],
-        queryFn: () => getGitFolderList(projectDefaultInfo.gitRepository, branch)
+        queryFn: () => getGitFolderList(branch, value)
     })
 
     const handleSelectFolder = (value: string) => {
@@ -25,7 +24,7 @@ export default function GitRepositoryFolder({...props}) {
         }))
     }
 
-    if (!data || isLoading) return <></>
+    if (!data || isLoading || !value) return <></>
 
     return <div className='mt-5'>
         <TreeSelect

@@ -1,11 +1,14 @@
 [
     {
-        "branchName": "main" 
+        "branchName": "main",
+        "value": "e169a08ce8e657e752f9561ca6cee12306d60106"
     },
     {
-        "branchName": "develop"
+        "branchName": "develop",
+        "value": "e169a08ce8e657e752f9561ca6cee12306d60106"
     },
     {
-        "branchName": "feature"
+        "branchName": "feature",
+        "value": "e169a08ce8e657e752f9561ca6cee12306d60106"
     }
 ]

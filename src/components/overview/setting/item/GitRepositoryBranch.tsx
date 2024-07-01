@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react'
 import { Select } from 'antd'
 import { selectItem } from '../../../../types/common'
 
-export default function GitRepositoryBranch() {
+export default function GitRepositoryBranch({...props}) {
+    const {setBranchValue} = props
     const projectDefaultInfo = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
     const [branchList, setBranchList] = useState<Array<selectItem>>([])
     const setProjectBuildInfo = useSetRecoilState<projectBuildInfo>(projectBuildState)
@@ -18,19 +19,22 @@ export default function GitRepositoryBranch() {
     })
 
     const handleBranch = (value: string) => {
-        setProjectBuildInfo((prev) => ({
-            ...prev,
-            projectSpec: {
-                ...prev.projectSpec,
-                branch: value
-            }
-        }))
+        if (data) {
+            setBranchValue(data[branchList.findIndex((item) => item.value === value)].value)
+            setProjectBuildInfo((prev) => ({
+                ...prev,
+                projectSpec: {
+                    ...prev.projectSpec,
+                    branch: value
+                }
+            }))
+        }
     }
 
     useEffect(() => {
         if (data) {
             const tmpBranchList: Array<selectItem> = []
-
+            setBranchValue(data[0].value)
             data.forEach((item, index) => {
                 if (index === 0) {
                     setProjectBuildInfo((prev) => ({
@@ -50,6 +54,7 @@ export default function GitRepositoryBranch() {
             
             setBranchList(tmpBranchList)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data, setProjectBuildInfo])
 
     if (!data || isLoading) return <></>
