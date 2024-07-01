@@ -54,6 +54,7 @@ export default function GitRepositoryBranch({...props}) {
             
             setBranchList(tmpBranchList)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data, setProjectBuildInfo])
 
     if (!data || isLoading) return <></>
