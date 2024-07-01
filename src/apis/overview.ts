@@ -105,9 +105,9 @@ export const getGitBranchList = async(repoNm: string) => {
 /**
  * 깃 레포 폴더 목록
  */
-export const getGitFolderList = async(repoNm: string, branch: string) => {
+export const getGitFolderList = async(repoNm: string, value: string) => {
     // const { data } = await authInstance.get(
-    //     `/projects/${repoNm}/folders?branch=${branch}${path ? '&path=' + path : ''}`
+    //     `/projects/${repoNm}/folders/${value}`
     // )
 
     const data = gitFolderList

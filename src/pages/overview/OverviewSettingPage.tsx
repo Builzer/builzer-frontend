@@ -17,6 +17,7 @@ export default function OverviewSettingPage() {
     const resetProjectCollaborators = useResetRecoilState(projectCollaboratorsState)
     const [value, setValue] = useState<string>('')
     const [options, setOptions] = useState<Array<selectItem>>(projectCollaborators)
+    const [branchValue, setBranchValue] = useState<string>()
 
     const MAX_COUNT = projectBuildInfo.projectInfo.projectPlan === 'Lite' ? 2 : 50
 
@@ -87,8 +88,8 @@ export default function OverviewSettingPage() {
         <p className='absolute text-2xl top-3 left-40 text-white font-light'>단계에 따라 프로젝트를 구성하고 배포해보세요!</p>
         <div className='flex flex-row gap-2 justify-between p-2'>
         <div className='p-5 mt-[-140px] rounded-md border-[1px] border-gray1 w-[350px] h-[200px] bg-white'>
-            <GitRepositoryInfo />
-            <GitRepositoryFolder branch={projectBuildInfo.projectSpec.branch} />
+            <GitRepositoryInfo setBranchValue={setBranchValue} />
+            <GitRepositoryFolder branch={projectBuildInfo.projectSpec.branch} value={branchValue} />
         </div>
         <div className='absolute right-2 top-28 w-[400px]'>
             <p className='text-white text-lg'>

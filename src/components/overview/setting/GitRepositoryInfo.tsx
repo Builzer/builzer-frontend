@@ -4,12 +4,13 @@ import { projectDefaultInfo } from '../../../types/project'
 import { projectDefaultInfoState } from '../../../recoil/atoms/project'
 import GitRepositoryBranch from './item/GitRepositoryBranch'
 
-export default function GitRepositoryInfo() {
+export default function GitRepositoryInfo({...props}) {
+    const {setBranchValue} = props
     const buildProjectDefaultInfo = useRecoilValue<projectDefaultInfo>(projectDefaultInfoState)
 
     return <div>
         <p className='font-bold'>깃 레포</p>
         <p className='mt-2'><GitHubIcon /> {buildProjectDefaultInfo.gitRepository}</p>
-        <GitRepositoryBranch />
+        <GitRepositoryBranch setBranchValue={setBranchValue} />
     </div>
 }
