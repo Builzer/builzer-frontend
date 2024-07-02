@@ -46,18 +46,18 @@ export default function MonitoringPage() {
     return <div>
         <BrowserView>
             <div className='w-full h-[620px] flex flex-row gap-5 p-2'>
-                    <div className='w-1/5 mt-20 pl-5'>
-                        <SettingSideMenu menuList={['로그', '사용량 그래프']} setMenu={setManagementMenu} menu={managementMenu} isButton={false} />
-                    </div>
-                    <div className='w-4/5 pt-5'>
-                        {
-                            managementMenu === '로그' ?
-                            (<MonitoringLog project={projectSetting} projectId={selectedProject.projectId} />)
-                            :
-                            (<MonitoringGraph project={projectSetting} projectId={selectedProject.projectId} />)
-                        }
-                    </div>
+                <div className='w-1/5 mt-20 pl-5'>
+                    <SettingSideMenu menuList={['로그', '사용량 그래프']} setMenu={setManagementMenu} menu={managementMenu} isButton={false} />
                 </div>
+                <div className='w-4/5 pt-5'>
+                    {
+                        managementMenu === '로그' ?
+                        (<MonitoringLog project={projectSetting} projectId={selectedProject.projectId} />)
+                        :
+                        (<MonitoringGraph project={projectSetting} projectId={selectedProject.projectId} />)
+                    }
+                </div>
+            </div>
         </BrowserView>
     </div>
 }

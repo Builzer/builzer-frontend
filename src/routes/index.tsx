@@ -11,6 +11,7 @@ import OverviewDeployPage from "../pages/overview/OverviewDeployPage"
 import OverviewDeployDonePage from "../pages/overview/OverviewDeployDonePage"
 import ManagementPage from "../pages/ManagementPage"
 import MonitoringPage from "../pages/MonitoringPage"
+import PipelinePage from "../pages/PipelinePage"
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
         errorElement: <NotFoundPage />,
         children: [
             { index: true, path: '', element: <MonitoringPage /> }
+        ]
+    },
+    {
+        path: '/pipelines',
+        element: <MainLayoutSigned />,
+        errorElement: <NotFoundPage />,
+        children: [
+            { index: true, path: '', element: <PipelinePage /> }
         ]
     }
 ])

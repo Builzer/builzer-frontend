@@ -1,0 +1,32 @@
+[
+    {
+        "buildHistoryId": 1038,
+        "lastCommit": "Last Commit",
+        "commitInfo": "Deploy production profile about - #N: Commit 1234 pushed by nickname",
+        "branch": "main",
+        "executor": "aaa",
+        "status": "ing",
+        "buildTime": "6m 3s",
+        "date": "23m ago"
+    },
+    {
+        "buildHistoryId": 1033,
+        "lastCommit": "Last Commit",
+        "commitInfo": "Deploy production profile about - #N: Commit 1234 pushed by nickname",
+        "branch": "main",
+        "executor": "aaa",
+        "status": "success",
+        "buildTime": "5m 29s",
+        "date": "2h ago"
+    },        
+    {
+        "buildHistoryId": 1030,
+        "lastCommit": "Last Commit",
+        "commitInfo": "Deploy production profile about - #N: Commit 1234 pushed by nickname",
+        "branch": "main",
+        "executor": "aaa",
+        "status": "fail",
+        "buildTime": "6m 3s",
+        "date": "1day ago"
+    }
+]
