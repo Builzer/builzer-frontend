@@ -7,6 +7,7 @@ import SettingSideMenu from "../components/base/common/SettingSideMenu";
 import { useQuery } from "react-query";
 import { getProjectDetailInfo } from "../apis/overview";
 import MonitoringLog from "../components/monitoring/MonitoringLog";
+import MonitoringGraph from "../components/monitoring/MonitoringGraph";
 
 export default function MonitoringPage() {
     const selectedProject = useRecoilValue<projectInfoSimple>(selectedProjectState)
@@ -53,7 +54,7 @@ export default function MonitoringPage() {
                             managementMenu === '로그' ?
                             (<MonitoringLog project={projectSetting} projectId={selectedProject.projectId} />)
                             :
-                            (<></>)
+                            (<MonitoringGraph project={projectSetting} projectId={selectedProject.projectId} />)
                         }
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import { DownloadOutlined, InfoCircleFilled } from '@ant-design/icons'
 import { useMutation } from 'react-query'
 import { getLogFile, searchLogs } from '../../apis/monitoring'
-import { Button, Input, Select, Tooltip } from 'antd'
+import { Button, Input, Popconfirm, PopconfirmProps, Select, Tooltip, message } from 'antd'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { SearchProps } from 'antd/es/input/Search'
 
@@ -123,6 +123,12 @@ export default function MonitoringLog({...props}) {
         downloadMutation.mutate()
     }
 
+    // TODO: 프로젝트 업그레이드 처리
+    const confirm: PopconfirmProps['onConfirm'] = () => {
+        message.success('업그레이드 완료')
+    }
+
+
     useEffect(() => {
         const tmpLog = {
             version:'1',
@@ -158,19 +164,36 @@ export default function MonitoringLog({...props}) {
     }, [])
 
     return <div className='w-full h-full px-10 overflow-auto'>
-        <div className='flex flex-row gap-3'>
-            <span className='text-3xl font-bold'>로그</span>
-            <span className='mt-3 cursor-pointer'>
-                <Tooltip placement='bottom' title={<p className='font-thin'>Pro버전 이용 시 <span className='font-regular text-[1.1rem]'>'실시간 로그'</span>를 확인할 수 있습니다.</p>} arrow={mergedArrow}>
-                    <InfoCircleFilled style={{ fontSize: 15 }} />
-                </Tooltip>
-            </span>
+        <div className='flex flex-row justify-between'>
+            <div className='flex flex-row gap-3'>
+                <span className='text-3xl font-bold'>로그</span>
+                <span className='mt-3 cursor-pointer'>
+                    <Tooltip placement='bottom' title={<p className='font-thin'>Pro버전 이용 시 <span className='font-regular text-[1.1rem]'>'실시간 로그'</span>를 확인할 수 있습니다.</p>} arrow={mergedArrow}>
+                        <InfoCircleFilled style={{ fontSize: 15 }} />
+                    </Tooltip>
+                </span>
+            </div>
+            {
+                project.projectInfo.projectPlan === 'Lite' ?
+                (<Popconfirm
+                    title='PRO 버전으로 업그레이드'
+                    description={<div className='w-[400px] mt-2'>PRO 버전으로 업그레이드 시 추가 서버 스펙 선택, 데이터베이스 설정이 가능합니다.<br /><p className='mt-4 font-medium'>⚠️ 추가 크레딧이 부과될 수 있습니다.</p ></div>}
+                    onConfirm={confirm}
+                    okText='업그레이드'
+                    cancelText='취소'
+                >
+                    <Button className='ml-[41%] bg-black mt-2' size='large' type='primary'>PRO로 업그레이드</Button>
+                </Popconfirm>)
+                :
+                (<></>)
+            }
         </div>
+        
         <div className='flex flex-row gap-3 justify-end pb-3 border-b-[1px] border-gray1' />
         <div className='p-5'>
         {
             project.projectInfo.projectPlan === 'Lite' ?
-            (<Button size='large' className='bg-black' type='primary'>PRO로 업그레이드</Button>)
+            (<></>)
             :
             (<div className='w-full flex flex-col gap-2'>
                 <div className='flex flex-row gap-2'>
