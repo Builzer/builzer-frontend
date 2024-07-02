@@ -47,3 +47,71 @@ export const searchLogs = async(projectId: number | undefined, props: any) => {
 
     return data
 }
+
+/**
+ * CPU 그래프
+ */
+export const getCpuUsageGraph = async(projectId: number | undefined, unit: string, range: Array<string>) => {
+    // const { data } = await authInstance.get(
+    //     `/monitoring/vcpu/projects/${projectId}?unit=${unit}&startDate=${range[0]}&endDate=${range[1]}`
+    // )
+
+    const data = [
+        {
+            "time": "2024-06-03T12:00:00",
+            "usage": 10
+        },
+        {
+            "time": "2024-06-03T12:00:30",
+            "usage": 19
+        },
+        {
+            "time": "2024-06-03T12:01:00",
+            "usage": 50
+        },
+        {
+            "time": "2024-06-03T12:01:30",
+            "usage": 40
+        },
+        {
+            "time": "2024-06-03T12:02:00",
+            "usage": 30
+        }
+    ]
+
+    return data
+}
+
+/**
+ * Memory 그래프
+ */
+export const getMemoryUsageGraph = async(projectId: number | undefined, unit: string, range: Array<string>) => {
+    // const { data } = await authInstance.get(
+    //     `/monitoring/vcpu/projects/${projectId}?unit=${unit}&startDate=${range[0]}&endDate=${range[1]}`
+    // )
+
+    const data = [
+        {
+            "time": "2024-06-03T12:00:00",
+            "usage": 10
+        },
+        {
+            "time": "2024-06-03T12:00:30",
+            "usage": 19
+        },
+        {
+            "time": "2024-06-03T12:01:00",
+            "usage": 50
+        },
+        {
+            "time": "2024-06-03T12:01:30",
+            "usage": 40
+        },
+        {
+            "time": "2024-06-03T12:02:00",
+            "usage": 30
+        }
+    ]
+
+    return data
+}
