@@ -12,6 +12,7 @@ import OverviewDeployDonePage from "../pages/overview/OverviewDeployDonePage"
 import ManagementPage from "../pages/ManagementPage"
 import MonitoringPage from "../pages/MonitoringPage"
 import PipelinePage from "../pages/PipelinePage"
+import SettingPage from "../pages/SettingPage"
 
 const router = createBrowserRouter([
     {
@@ -64,6 +65,14 @@ const router = createBrowserRouter([
         errorElement: <NotFoundPage />,
         children: [
             { index: true, path: '', element: <PipelinePage /> }
+        ]
+    },
+    {
+        path: '/settings',
+        element: <MainLayoutSigned />,
+        errorElement: <NotFoundPage />,
+        children: [
+            { index: true, path: '', element: <SettingPage /> }
         ]
     }
 ])
