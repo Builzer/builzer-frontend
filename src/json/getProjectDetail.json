@@ -1,42 +1,42 @@
 {
-    "projectInfo": {
-        "projectName": "project01",
-        "projectPlan": "Pro",
-        "authority": "owner",
-        "projectStatus": "active",
-        "domain": "domain",
-        "gitRepository": "test01",
-        "lastDisabledDate": "2024-06-03T12:00:00",
-        "lastPaidDate": "2024-06-03T12:00:00"
+  "projectInfo": {
+    "projectName": "project01",
+    "projectPlan": "Pro",
+    "authority": "developer",
+    "projectStatus": "active",
+    "domain": "domain",
+    "gitRepository": "test01",
+    "lastDisabledDate": "2024-06-03T12:00:00",
+    "lastPaidDate": "2024-06-03T12:00:00"
+  },
+  "projectSpec": {
+    "branch": "main",
+    "rootPath": "/",
+    "buildTools": "Maven",
+    "language": {
+      "type": "Java",
+      "version": "17.0.8",
+      "provider": "Amazon Corretto"
     },
-    "projectSpec": {
-        "branch": "main",
-        "rootPath": "/",
-        "buildTools": "Maven",
-        "language": {
-            "type": "Java",
-            "version": "17.0.8",
-            "provider": "Amazon Corretto"
-        },
-        "serverSpec" : {
-            "name" : "t3.nano",
-            "cpu" : "2 vCPU",
-            "memory" : "0.5",
-            "credit" : 3,
-            "cloudProvider": "Amazon Web Services"
-        },
-        "dbSpec" : {
-            "dbType" : "MySQL",
-            "dbVersion" : "6.0.8",
-            "dbId": "root",
-            "dbPw": "1234"
-        },
-        "isRunTest": true,
-        "envList": [
-            {"key1": "value1"},
-            {"key2": "value2"},
-            {"key3": "value3"},
-            {"key4": "value4"}
-        ]
-    }
+    "serverSpec": {
+      "name": "t3.nano",
+      "cpu": "2 vCPU",
+      "memory": "0.5",
+      "credit": 3,
+      "cloudProvider": "Amazon Web Services"
+    },
+    "dbSpec": {
+      "dbType": "MySQL",
+      "dbVersion": "6.0.8",
+      "dbId": "root",
+      "dbPw": "1234"
+    },
+    "isRunTest": true,
+    "envList": [
+      { "key1": "value1" },
+      { "key2": "value2" },
+      { "key3": "value3" },
+      { "key4": "value4" }
+    ]
+  }
 }

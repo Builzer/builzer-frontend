@@ -1,0 +1,10 @@
+{
+    "projectId": 1,
+    "isOtherDeployNotification": true,
+    "isServerErrorNotification": true,
+    "isUsageOverNotification": true,
+    "vcpuUsage": 10,
+    "memUsage": 20,
+    "isCreditUsageNotification": true,
+    "isPaymentNotification": true
+}
