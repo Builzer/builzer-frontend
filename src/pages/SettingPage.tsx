@@ -7,7 +7,7 @@ import { getProjectDetailInfo } from "../apis/overview";
 import { BrowserView } from "react-device-detect";
 import SettingSideMenu from "../components/base/common/SettingSideMenu";
 import ProjectNotification from "../components/setting/ProjectNotification";
-import ProjectCollaborators from "../components/setting/ProjectCollaborators";
+import ProjectCollaboratorSetting from "../components/setting/ProjectCollaboratorSetting";
 import ProjectGeneral from "../components/setting/ProjectGeneral";
 
 export default function SettingPage() {
@@ -48,7 +48,10 @@ export default function SettingPage() {
                 projectSpecId={selectedProject.projectSpecId}
               />
             ) : managementMenu === "프로젝트 팀원" ? (
-              <ProjectCollaborators projectId={selectedProject.projectSpecId} />
+              <ProjectCollaboratorSetting
+                project={data}
+                projectSpecId={selectedProject.projectSpecId}
+              />
             ) : (
               <ProjectGeneral projectId={selectedProject.projectSpecId} />
             )}
