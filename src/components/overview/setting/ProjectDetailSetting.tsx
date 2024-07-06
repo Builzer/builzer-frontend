@@ -69,6 +69,7 @@ export default function ProjectDetailSetting() {
   });
 
   const handleStartDeploy = () => {
+    console.log(projectCollaborators);
     if (!isDomainValid) {
       message.error("도메인 유효성 검사를 진행해주세요.");
     } else if (isUseDb && !dbId) {
