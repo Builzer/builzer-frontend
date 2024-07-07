@@ -34,3 +34,55 @@ export const modifyNotificationSetting = async (
   };
   return data;
 };
+
+/**
+ * 프로젝트 중단
+ */
+export const stopProject = async (id: number) => {
+  // const { data } = await authInstance.post(
+  //   `/projects/${id}/cancel`
+  // )
+  // return data
+
+  const data = {
+    code: 201,
+    message: "Created",
+    data: [],
+  };
+
+  return data;
+};
+
+/**
+ * 프로젝트 삭제
+ */
+export const deleteProject = async (id: number) => {
+  // const { data } = await authInstance.delete(
+  //   `/projects/${id}`
+  // )
+  // return data
+
+  const data = {
+    code: 200,
+    message: "OK",
+  };
+  return data;
+};
+
+/**
+ * 프로젝트 재개
+ */
+export const restartProject = async (id: number) => {
+  // const { data } = await authInstance.post(
+  //   `/projects/${id}/cancel`
+  // )
+  // return data
+
+  const data = {
+    code: 200,
+    message: "OK",
+    data: [],
+  };
+
+  return data;
+};

@@ -30,6 +30,11 @@ export default function MonitoringPage() {
 
   useEffect(() => {
     if (data) {
+      if (data.projectInfo.projectStatus !== "active") {
+        alert("프로젝트 활성화를 진행해주세요.");
+        window.location.href = "/setting";
+      }
+
       setProjectSetting({
         projectInfo: {
           projectName: data.projectInfo.projectName,
