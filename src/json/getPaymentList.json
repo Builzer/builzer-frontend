@@ -1,0 +1,16 @@
+{
+  "paymentHistories": [
+    {
+      "id": 0,
+      "paymentState": "buy",
+      "count": 5,
+      "eventDate": "yyyy-MM-dd"
+    },
+    {
+      "id": 1,
+      "paymentState": "refund",
+      "count": 3,
+      "eventDate": "yyyy-MM-dd"
+    }
+  ]
+}
