@@ -23,7 +23,7 @@ export default function ManagementPage() {
 
   useEffect(() => {
     if (!selectedProject.projectSpecId) {
-      alert("관리할 프로젝트를 선택해주세요");
+      alert("관리할 프로젝트를 선택해주세요.");
       window.location.href = "/overview";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,6 +31,10 @@ export default function ManagementPage() {
 
   useEffect(() => {
     if (data) {
+      if (data.projectInfo.projectStatus !== "active") {
+        alert("프로젝트 활성화를 진행해주세요.");
+        window.location.href = "/setting";
+      }
       setProjectSetting({
         projectInfo: {
           projectName: data.projectInfo.projectName,

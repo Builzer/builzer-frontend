@@ -14,6 +14,7 @@ export default function SettingPage() {
   const selectedProject =
     useRecoilValue<projectInfoSimple>(selectedProjectState);
   const [managementMenu, setManagementMenu] = useState<string>("프로젝트 알림");
+  const [projectStatus, setProjectStatus] = useState<string>("activate");
 
   const { data, isLoading } = useQuery({
     queryKey: ["getProjectDetailInfo", selectedProject.projectSpecId],
@@ -27,6 +28,14 @@ export default function SettingPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      if (data.projectInfo.projectStatus === "deactivate") {
+        setManagementMenu("일반");
+      }
+    }
+  }, [data, projectStatus]);
 
   if (!data || isLoading) return <></>;
 
@@ -53,7 +62,11 @@ export default function SettingPage() {
                 projectSpecId={selectedProject.projectSpecId}
               />
             ) : (
-              <ProjectGeneral projectId={selectedProject.projectSpecId} />
+              <ProjectGeneral
+                project={data}
+                projectId={selectedProject.projectSpecId}
+                setProjectStatus={setProjectStatus}
+              />
             )}
           </div>
         </div>

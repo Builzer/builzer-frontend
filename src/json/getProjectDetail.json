@@ -2,8 +2,8 @@
   "projectInfo": {
     "projectName": "project01",
     "projectPlan": "Pro",
-    "authority": "developer",
-    "projectStatus": "active",
+    "authority": "owner",
+    "projectStatus": "activate",
     "domain": "domain",
     "gitRepository": "test01",
     "lastDisabledDate": "2024-06-03T12:00:00",
