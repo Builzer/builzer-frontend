@@ -7,6 +7,7 @@ import { selectedProjectState } from "../recoil/atoms/common";
 import { projectInfoSimple } from "../types/project";
 import { useState } from "react";
 import NextBillingInfo from "../components/billing/NextBillingInfo";
+import CreditUsageList from "../components/billing/CreditUsageList";
 
 export default function BillingsPage() {
   const selectedProject =
@@ -50,6 +51,13 @@ export default function BillingsPage() {
                 <p className="font-bold text-2xl">결제 예정</p>
                 <div className="w-full mt-2">
                   <NextBillingInfo projectId={projectId} />
+                </div>
+              </div>
+              <div className="gap-3 py-3 pb-3 w-full border-b-[1px] border-gray1" />
+              <div className="mt-3">
+                <p className="font-bold text-2xl">사용 내역</p>
+                <div className="w-full mt-2">
+                  <CreditUsageList />
                 </div>
               </div>
             </div>
