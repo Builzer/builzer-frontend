@@ -12,12 +12,12 @@ export default function PipelinePage() {
     useRecoilValue<projectInfoSimple>(selectedProjectState);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getProjectDetailInfo", selectedProject.projectSpecId],
-    queryFn: () => getProjectDetailInfo(selectedProject.projectSpecId),
+    queryKey: ["getProjectDetailInfo", selectedProject.projectId],
+    queryFn: () => getProjectDetailInfo(selectedProject.projectId),
   });
 
   useEffect(() => {
-    if (!selectedProject.projectSpecId) {
+    if (!selectedProject.projectId) {
       alert("관리할 프로젝트를 선택해주세요");
       window.location.href = "/overview";
     }
@@ -33,7 +33,7 @@ export default function PipelinePage() {
     }
   }, [data]);
 
-  if (!data || isLoading || !selectedProject.projectSpecId) return <></>;
+  if (!data || isLoading || !selectedProject.projectId) return <></>;
 
   return (
     <div>

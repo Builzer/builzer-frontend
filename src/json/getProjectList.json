@@ -1,22 +1,22 @@
 {
-    "projects" : [
-        {
-            "projectSpecId": 1,
-            "projectName" : "Test Repo 1",
-            "projectStatus" : "####",
-            "projectPlan" : "lite",
-            "authority" : "owner",
-            "lastBuild" : "yyyy-MM-dd",
-            "createdAt" : "2024-06-22"
-        },
-        {
-            "projectSpecId": 2,
-            "projectName" : "Test Repo 2",
-            "projectStatus" : "####",
-            "projectPlan" : "lite",
-            "authority" : "developer",
-            "lastBuild" : "yyyy-MM-dd",
-            "createdAt" : "2024-06-23"
-        }
-    ]
+  "projects": [
+    {
+      "projectId": 1,
+      "projectName": "Test Repo 1",
+      "projectStatus": "####",
+      "projectPlan": "lite",
+      "authority": "owner",
+      "lastBuild": "yyyy-MM-dd",
+      "createdAt": "2024-06-22"
+    },
+    {
+      "projectId": 2,
+      "projectName": "Test Repo 2",
+      "projectStatus": "####",
+      "projectPlan": "lite",
+      "authority": "developer",
+      "lastBuild": "yyyy-MM-dd",
+      "createdAt": "2024-06-23"
+    }
+  ]
 }

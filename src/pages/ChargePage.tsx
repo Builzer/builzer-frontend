@@ -53,7 +53,7 @@ export default function ChargePage() {
       <BrowserView>
         <div className="relative w-full h-[620px] flex flex-row gap-5">
           <img src={BgImage} alt="배경 이미지" className="absolute bottom-0" />
-          <div className="relative z-20 ml-40 pt-5 w-full h-full px-10 overflow-auto">
+          <div className="relative z-10 ml-40 pt-5 w-full h-full px-10 overflow-auto">
             <p className="text-3xl font-bold">크레딧 충전</p>
             <div className="w-full flex flex-row gap-5 mt-3">
               <div className="w-1/2 h-[520px] border-[1px] border-gray1 bg-white p-2">

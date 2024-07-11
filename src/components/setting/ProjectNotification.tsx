@@ -15,7 +15,7 @@ import { notificationSetting } from "../../types/project";
 import { useEffect, useState } from "react";
 
 export default function ProjectNotification({ ...props }) {
-  const { projectSpecId, project } = props;
+  const { projectId, project } = props;
   const [toast, contextHolder] = notification.useNotification();
 
   const [notificationSetting, setNotificationSetting] =
@@ -31,8 +31,8 @@ export default function ProjectNotification({ ...props }) {
     });
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getNotificationSetting", projectSpecId],
-    queryFn: () => getNotificationSetting(projectSpecId),
+    queryKey: ["getNotificationSetting", projectId],
+    queryFn: () => getNotificationSetting(projectId),
   });
 
   const handlePaymentNoti: CheckboxProps["onChange"] = (e) => {

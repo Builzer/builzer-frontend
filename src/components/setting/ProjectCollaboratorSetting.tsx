@@ -10,7 +10,7 @@ import { projectCollaboratorsState } from "../../recoil/atoms/project";
 import { useRecoilState, useResetRecoilState } from "recoil";
 
 export default function ProjectCollaboratorSetting({ ...props }) {
-  const { project, projectSpecId } = props;
+  const { project, projectId } = props;
   const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
   const [projectCollaborators, setProjectCollaborators] = useRecoilState<
@@ -24,8 +24,8 @@ export default function ProjectCollaboratorSetting({ ...props }) {
   const [reloadState, setReloadState] = useState<boolean>(false);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getCollagorators", projectSpecId, reloadState],
-    queryFn: () => getProjectCollaborators(projectSpecId),
+    queryKey: ["getCollagorators", projectId, reloadState],
+    queryFn: () => getProjectCollaborators(projectId),
   });
 
   const emailCheck = (value: string) => {
@@ -100,7 +100,7 @@ export default function ProjectCollaboratorSetting({ ...props }) {
 
   const inviteCollaboratorsMutation = useMutation(
     ["inviteCollaborators"],
-    () => inviteCollaborators(projectSpecId, inviteEmailList),
+    () => inviteCollaborators(projectId, inviteEmailList),
     {
       onSuccess: () => {
         resetProjectCollaborators();

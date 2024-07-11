@@ -22,8 +22,8 @@ export default function PipelineList() {
   const [current, setCurrent] = useState(0);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getPipelineList", selectedProject.projectSpecId],
-    queryFn: () => getPipelineList(selectedProject.projectSpecId),
+    queryKey: ["getPipelineList", selectedProject.projectId],
+    queryFn: () => getPipelineList(selectedProject.projectId),
   });
 
   const onChange: PaginationProps["onChange"] = (page) => {
@@ -31,14 +31,14 @@ export default function PipelineList() {
   };
 
   useEffect(() => {
-    if (!selectedProject.projectSpecId) {
+    if (!selectedProject.projectId) {
       alert("관리할 프로젝트를 선택해주세요");
       window.location.href = "/overview";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!data || isLoading || !selectedProject.projectSpecId) return <></>;
+  if (!data || isLoading || !selectedProject.projectId) return <></>;
 
   return (
     <div className="w-full h-[620px] p-3 flex flex-col gap-3">

@@ -7,7 +7,7 @@ import { selectedProjectState } from "../../recoil/atoms/common";
 import { ExceptionOutlined } from "@ant-design/icons";
 
 export default function ProjectGeneral({ ...props }) {
-  const { project, projectSpecId, setProjectStatus } = props;
+  const { project, projectId, setProjectStatus } = props;
   const resetSelectedProject = useResetRecoilState(selectedProjectState);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [activateOpen, setActivateOpen] = useState<boolean>(false);
@@ -40,7 +40,7 @@ export default function ProjectGeneral({ ...props }) {
 
   const stopProjectMutation = useMutation(
     ["stopProject"],
-    () => stopProject(projectSpecId),
+    () => stopProject(projectId),
     {
       onSuccess: () => {
         message.success("비활성화되었습니다.");
@@ -52,7 +52,7 @@ export default function ProjectGeneral({ ...props }) {
 
   const restartProjectMutation = useMutation(
     ["restartProject"],
-    () => restartProject(projectSpecId),
+    () => restartProject(projectId),
     {
       onSuccess: () => {
         message.success(
@@ -75,7 +75,7 @@ export default function ProjectGeneral({ ...props }) {
 
   const deleteProjectMutation = useMutation(
     ["deleteProject"],
-    () => deleteProject(projectSpecId),
+    () => deleteProject(projectId),
     {
       onSuccess: () => {
         message.success("프로젝트가 삭제되었습니다.");

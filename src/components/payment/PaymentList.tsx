@@ -117,7 +117,7 @@ export default function PaymentList() {
                   }`}
                 >
                   {item.paymentState === "buy" ? "-" : "+"}
-                  {item.count}
+                  {(item.count * 1000).toLocaleString()}원
                 </p>
               </div>
             </div>
