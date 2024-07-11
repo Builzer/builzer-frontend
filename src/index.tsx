@@ -1,28 +1,28 @@
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import { RouterProvider } from 'react-router-dom'
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
 
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
-import { RecoilRoot } from 'recoil'
-import { ConfigProvider } from 'antd'
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { RecoilRoot } from "recoil";
+import { ConfigProvider } from "antd";
 
-import router from './routes'
+import router from "./routes";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-)
+  document.getElementById("root") as HTMLElement
+);
 
 root.render(
-  <ConfigProvider theme={{ token: { colorPrimary: '#666666' } }}>
+  <ConfigProvider
+    theme={{ token: { colorPrimary: "#666666", fontFamily: "regular" } }}
+  >
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} fallbackElement={''} />
+        <RouterProvider router={router} fallbackElement={""} />
         <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </RecoilRoot>
   </ConfigProvider>
-
-)
-
+);
