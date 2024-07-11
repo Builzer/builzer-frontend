@@ -17,12 +17,12 @@ export default function SettingPage() {
   const [projectStatus, setProjectStatus] = useState<string>("activate");
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getProjectDetailInfo", selectedProject.projectSpecId],
-    queryFn: () => getProjectDetailInfo(selectedProject.projectSpecId),
+    queryKey: ["getProjectDetailInfo", selectedProject.projectId],
+    queryFn: () => getProjectDetailInfo(selectedProject.projectId),
   });
 
   useEffect(() => {
-    if (!selectedProject.projectSpecId) {
+    if (!selectedProject.projectId) {
       alert("관리할 프로젝트를 선택해주세요");
       window.location.href = "/overview";
     }
@@ -54,17 +54,17 @@ export default function SettingPage() {
             {managementMenu === "프로젝트 알림" ? (
               <ProjectNotification
                 project={data}
-                projectSpecId={selectedProject.projectSpecId}
+                projectId={selectedProject.projectId}
               />
             ) : managementMenu === "프로젝트 팀원" ? (
               <ProjectCollaboratorSetting
                 project={data}
-                projectSpecId={selectedProject.projectSpecId}
+                projectId={selectedProject.projectId}
               />
             ) : (
               <ProjectGeneral
                 project={data}
-                projectId={selectedProject.projectSpecId}
+                projectId={selectedProject.projectId}
                 setProjectStatus={setProjectStatus}
               />
             )}

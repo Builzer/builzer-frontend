@@ -65,7 +65,7 @@ export default function ProjectDetailSetting() {
 
   const { data, isLoading } = useQuery({
     queryKey: ["getProjectDetailInfo"],
-    queryFn: () => getProjectDetailInfo(projectDefaultValue.projectSpecId),
+    queryFn: () => getProjectDetailInfo(projectDefaultValue.projectId),
   });
 
   const handleStartDeploy = () => {
@@ -125,7 +125,7 @@ export default function ProjectDetailSetting() {
         });
 
         setSelectedProject({
-          projectSpecId: data.data,
+          projectId: data.data,
           projectName: projectBuildInfo.projectInfo.projectName,
         });
       },
@@ -275,7 +275,7 @@ export default function ProjectDetailSetting() {
   }, [form, projectBuildInfo]);
 
   useEffect(() => {
-    if (!projectDefaultValue.projectSpecId) {
+    if (!projectDefaultValue.projectId) {
       setProjectBuildInfo((prev) => ({
         projectInfo: {
           ...prev.projectInfo,

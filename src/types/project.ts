@@ -1,5 +1,5 @@
 export interface projectInfoSimple {
-  projectSpecId: number | undefined;
+  projectId: number | undefined;
   projectName: string;
 }
 export interface projectList {
@@ -9,7 +9,7 @@ export interface projectList {
   projectName: string;
   projectPlan: string;
   projectStatus: string;
-  projectSpecId: number;
+  projectId: number;
 }
 
 export interface repositoryList {
@@ -26,7 +26,7 @@ export interface planInfo {
 }
 
 export interface recentSettingInfo {
-  projectSpecId: number;
+  projectId: number;
   languageSpec: string;
   buildTools: string;
   serverSpec: string;
@@ -36,7 +36,7 @@ export interface recentSettingInfo {
 export interface projectDefaultInfo {
   gitRepository: string;
   projectPlan: string;
-  projectSpecId: number | undefined;
+  projectId: number | undefined;
 }
 
 export interface projectDetailInfo {

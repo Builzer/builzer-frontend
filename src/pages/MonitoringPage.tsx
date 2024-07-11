@@ -16,12 +16,12 @@ export default function MonitoringPage() {
   const [projectSetting, setProjectSetting] = useState<projectBuildInfo>();
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getProjectDetailInfo", selectedProject.projectSpecId],
-    queryFn: () => getProjectDetailInfo(selectedProject.projectSpecId),
+    queryKey: ["getProjectDetailInfo", selectedProject.projectId],
+    queryFn: () => getProjectDetailInfo(selectedProject.projectId),
   });
 
   useEffect(() => {
-    if (!selectedProject.projectSpecId) {
+    if (!selectedProject.projectId) {
       alert("관리할 프로젝트를 선택해주세요");
       window.location.href = "/overview";
     }
@@ -47,7 +47,7 @@ export default function MonitoringPage() {
     }
   }, [data]);
 
-  if (!data || isLoading || !projectSetting || !selectedProject.projectSpecId)
+  if (!data || isLoading || !projectSetting || !selectedProject.projectId)
     return <></>;
   return (
     <div>
@@ -65,12 +65,12 @@ export default function MonitoringPage() {
             {managementMenu === "로그" ? (
               <MonitoringLog
                 project={projectSetting}
-                projectId={selectedProject.projectSpecId}
+                projectId={selectedProject.projectId}
               />
             ) : (
               <MonitoringGraph
                 project={projectSetting}
-                projectId={selectedProject.projectSpecId}
+                projectId={selectedProject.projectId}
               />
             )}
           </div>

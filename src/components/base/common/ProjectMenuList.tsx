@@ -10,7 +10,7 @@ export default function ProjectMenuList({ ...props }) {
 
   const handleProjectId = (id: number, name: string) => {
     setSelectedProject({
-      projectSpecId: id,
+      projectId: id,
       projectName: name,
     });
   };
@@ -21,12 +21,12 @@ export default function ProjectMenuList({ ...props }) {
         <div
           key={index}
           className={`p-1 cursor-pointer hover:bg-gray1 ${
-            selectedProject.projectSpecId === project.projectSpecId
+            selectedProject.projectId === project.projectId
               ? "bg-gray2 hover:bg-gray2"
               : ""
           }`}
           onClick={() =>
-            handleProjectId(project.projectSpecId, project.projectName)
+            handleProjectId(project.projectId, project.projectName)
           }
         >
           {project.projectName}

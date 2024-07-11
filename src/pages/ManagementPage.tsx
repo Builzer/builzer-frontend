@@ -17,12 +17,12 @@ export default function ManagementPage() {
   const [isUseDb, setIsUseDb] = useState<boolean>(false);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["getProjectDetailInfo", selectedProject.projectSpecId],
-    queryFn: () => getProjectDetailInfo(selectedProject.projectSpecId),
+    queryKey: ["getProjectDetailInfo", selectedProject.projectId],
+    queryFn: () => getProjectDetailInfo(selectedProject.projectId),
   });
 
   useEffect(() => {
-    if (!selectedProject.projectSpecId) {
+    if (!selectedProject.projectId) {
       alert("관리할 프로젝트를 선택해주세요.");
       window.location.href = "/overview";
     }

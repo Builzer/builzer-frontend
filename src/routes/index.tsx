@@ -15,6 +15,7 @@ import PipelinePage from "../pages/PipelinePage";
 import SettingPage from "../pages/SettingPage";
 import AccountPage from "../pages/AccountPage";
 import ChargePage from "../pages/ChargePage";
+import BillingsPage from "../pages/BillingsPage";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
     element: <MainLayoutSigned />,
     errorElement: <NotFoundPage />,
     children: [{ index: true, path: "", element: <ChargePage /> }],
+  },
+  {
+    path: "/billings",
+    element: <MainLayoutSigned />,
+    errorElement: <NotFoundPage />,
+    children: [{ index: true, path: "", element: <BillingsPage /> }],
   },
 ]);
 
