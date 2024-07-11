@@ -1,0 +1,14 @@
+{
+  "creditHistories": [
+    {
+      "eventType": "use",
+      "count": 5,
+      "eventDate": "yyyy-MM-dd"
+    },
+    {
+      "eventType": "use",
+      "count": 3,
+      "eventDate": "yyyy-MM-dd"
+    }
+  ]
+}
