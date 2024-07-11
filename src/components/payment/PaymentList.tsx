@@ -104,7 +104,7 @@ export default function PaymentList() {
         {data.paymentHistories.map((item, index) => (
           <div
             key={index}
-            className="border-[1px] border-gray1 p-5 flex flex-row justify-between"
+            className="border-[1px] border-gray1 px-5 py-2 flex flex-row justify-between"
           >
             <div className="flex flex-row gap-3">
               <img src={CreditImg} alt="크레딧 이미지" className="w-20" />
