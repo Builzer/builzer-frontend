@@ -1,20 +1,19 @@
+import { defaultInstance } from "./utils";
+
 /**
- * 로그 파일 다운로드
+ * 로그인
  */
-export const login = async () => {
-  // const { data } = await defaultInstance.post(
-  //     `/member/oauth/github`
-  // )
+export const login = async (code: any) => {
+  console.log(code);
+  const { data } = await defaultInstance.post(`/member/oauth/github`, code);
 
-  // return data
-
-  const data = {
-    gitEmail: "githubtest01@gmail.com",
-    profileImage: 8,
-    name: "githubNickName",
-    totalCredit: 0,
-    isInvited: true,
-  };
+  // const data = {
+  //   gitEmail: "githubtest01@gmail.com",
+  //   profileImage: 8,
+  //   name: "githubNickName",
+  //   totalCredit: 0,
+  //   isInvited: true,
+  // };
 
   return data;
 };

@@ -2,23 +2,15 @@ import Login01 from "../assets/images/login/Login01.svg";
 import CreditImg from "../assets/images/Credit.svg";
 import { Button } from "antd";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { useMutation } from "react-query";
-import { login } from "../apis/auth";
-import { useSetRecoilState } from "recoil";
-import { userLoginInfo } from "../types/common";
-import { userInfoState } from "../recoil/atoms/common";
 
 export default function LoginPage() {
-  const setUserInfo = useSetRecoilState<userLoginInfo>(userInfoState);
+  const handleLogin = () => {
+    const clientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+    const redirectUrl = process.env.REACT_APP_GITHUB_REDIRECT_URL;
+    const githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}`;
 
-  const loginMutation = useMutation(["userLogin"], () => login(), {
-    onSuccess: (data) => {
-      console.log(data);
-      setUserInfo(data);
-      window.location.href = "/overview";
-    },
-    onError: () => {},
-  });
+    window.location.href = githubUrl;
+  };
 
   return (
     <div className="w-full h-full relative">
@@ -36,7 +28,7 @@ export default function LoginPage() {
           <Button
             type="primary"
             className="w-full h-12 font-bold text-xl bg-black"
-            onClick={() => loginMutation.mutate()}
+            onClick={handleLogin}
           >
             <GitHubIcon className="ml-1" />
             Continue With Github

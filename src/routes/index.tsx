@@ -16,6 +16,7 @@ import SettingPage from "../pages/SettingPage";
 import AccountPage from "../pages/AccountPage";
 import ChargePage from "../pages/ChargePage";
 import BillingsPage from "../pages/BillingsPage";
+import LoginCallbackPage from "../pages/LoginCallbackPage";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <MainLayoutUnsigned />,
     errorElement: <NotFoundPage />,
-    children: [{ index: true, path: "", element: <LoginPage /> }],
+    children: [
+      { index: true, path: "", element: <LoginPage /> },
+      { path: "callback", element: <LoginCallbackPage /> },
+    ],
   },
   {
     path: "/overview",
